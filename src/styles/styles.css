@@ -288,7 +288,7 @@ body {
     display: inline-block;
     border: 2px solid var(--color-dark);
     align-self: flex-start;
-    font-size: 19px; /* Aumentado de 12px */
+    font-size: 22px; /* Aumentado de 12px */
 }
 
 .level-desc {
@@ -407,6 +407,9 @@ body {
     border: 1.5px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius-md);
     padding: clamp(5px, 1vh, 8px) 10px;
+
+    flex: 1; /* agrgado por mi */
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
