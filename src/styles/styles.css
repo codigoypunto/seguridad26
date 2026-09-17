@@ -835,3 +835,49 @@ body {
 
 .congratulation-card { margin-top: auto; margin-bottom: auto; }
 .trophy-icon { font-size: 50px; text-align: center; margin-bottom: 10px; }
+
+
+/* --- */
+
+/* --- BOTÓN SECUNDARIO (VOLVER) --- */
+.btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-text-light);
+    padding: 10px;
+    border-radius: var(--border-radius-md);
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 13px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-secondary:active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- INDICADOR VISUAL PULL-TO-REFRESH --- */
+.ptr-indicator {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate3d(-50%, -60px, 0);
+    width: 40px;
+    height: 40px;
+    background: var(--color-dark-gray);
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.ptr-icon {
+    font-size: 18px;
+}

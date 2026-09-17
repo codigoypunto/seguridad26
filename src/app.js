@@ -2,12 +2,6 @@
  * Punto de entrada principal
  */
 
-
-
-
-
-
-
 import { addRoute, navigate } from './core/router.js';
 import { RegisterView } from './views/RegisterView.js';
 import { BravometroView } from './views/BravometroView.js';
@@ -15,11 +9,12 @@ import { EstacionesView } from './views/EstacionesView.js';
 import { EstacionView } from './views/EstacionView.js';
 import { EstrellasView } from './views/EstrellasView.js';
 import { CongratulationView } from './views/CongratulationView.js';
-import { initSecretReset } from './core/utils.js';
+import { initSecretReset, initPullToRefresh } from './core/utils.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Activa el listener secreto
+    // Inicializar listeners globales
     initSecretReset();
+    initPullToRefresh();
 
     // Rutas
     addRoute('/registro', RegisterView);
