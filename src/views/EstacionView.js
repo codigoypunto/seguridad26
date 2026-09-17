@@ -2,7 +2,7 @@ import { store } from '../core/store.js';
 import { Station1 } from './stations/Station1.js';
 import { Station3 } from './stations/Station3.js';
 import { StationCode } from './stations/StationCode.js';
-import { navigate } from '../../core/router.js';
+import { navigate } from '../core/router.js';
 
 export const EstacionView = () => {
     let currentStationModule = null;
