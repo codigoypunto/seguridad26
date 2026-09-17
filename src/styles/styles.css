@@ -288,7 +288,7 @@ body {
     display: inline-block;
     border: 2px solid var(--color-dark);
     align-self: flex-start;
-    font-size: 22px; /* Aumentado de 12px */
+    font-size: 24px; /* Aumentado de 12px */
 }
 
 .level-desc {
@@ -409,6 +409,7 @@ body {
     padding: clamp(5px, 1vh, 8px) 10px;
 
     flex: 1; /* agrgado por mi */
+    flex-grow: 0; /* agrgado por mi */
 
     display: flex;
     flex-direction: column;
