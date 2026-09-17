@@ -413,7 +413,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-between;
+
+    /* justify-content: space-between; */
+
+    justify-content: space-around;
     cursor: pointer;
     transition: all 0.2s ease;
     backdrop-filter: blur(5px);
