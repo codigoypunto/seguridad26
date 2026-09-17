@@ -2,6 +2,7 @@ import { store } from '../core/store.js';
 import { Station1 } from './stations/Station1.js';
 import { Station3 } from './stations/Station3.js';
 import { StationCode } from './stations/StationCode.js';
+import { navigate } from '../../core/router.js';
 
 export const EstacionView = () => {
     let currentStationModule = null;
@@ -28,7 +29,7 @@ export const EstacionView = () => {
                         const frag = document.createDocumentFragment();
                         const div = document.createElement('div');
                         div.className = 'view-container';
-                        div.innerHTML = `<h2 style="color:var(--color-primary); margin-top:50px;">ESTACIÓN ${stationId} EN CONSTRUCCIÓN</h2><button class="btn-primary" onclick="window.history.back()">VOLVER</button>`;
+                        div.innerHTML = `<h2 style="color:var(--color-primary); margin-top:50px;">ESTACIÓN ${stationId} EN CONSTRUCCIÓN</h2><button class="btn-primary" id="btnBackToStations">VOLVER</button>`;
                         frag.appendChild(div);
                         return frag;
                     },
@@ -40,6 +41,14 @@ export const EstacionView = () => {
     };
 
     const afterRender = () => {
+        const btnBack = document.getElementById('btnBackToStations');
+
+        // Evento botón volver
+                btnBack.addEventListener('click', () => {
+                    navigate('/estaciones');
+                });
+
+
         if (currentStationModule && currentStationModule.afterRender) {
             currentStationModule.afterRender();
         }
