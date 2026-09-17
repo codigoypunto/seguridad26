@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CONFIGURACIÓN DE FUENTES CORPORATIVAS
+   CONFIGURACIÓN DE FUENTES CORPORATIVAS Y BASE
    ========================================================================== */
 @font-face {
     font-family: 'AA Smart Sans';
@@ -14,11 +14,8 @@
     font-style: normal;
 }
 
-/* ==========================================================================
-   VARIABLES GLOBALES (Design System)
-   ========================================================================== */
 :root {
-    --color-primary: #FFB81C; /* Amarillo/Naranja Anglo American */
+    --color-primary: #FFB81C;
     --color-primary-dark: #E5A000;
     --color-dark: #1A1A1A;
     --color-dark-gray: #2C2C2C;
@@ -32,9 +29,6 @@
     --border-radius-lg: 24px;
 }
 
-/* ==========================================================================
-   RESET Y BASE RESPONSIVA (CERO DESBORDE)
-   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -45,7 +39,7 @@
 html, body {
     width: 100vw;
     height: 100vh;
-    height: 100dvh; /* Dynamic Viewport Height para navegadores móviles */
+    height: 100dvh;
     overflow: hidden !important;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -55,15 +49,11 @@ body {
     font-family: var(--font-main);
     background-color: var(--color-dark); 
     color: var(--color-text-light);
-    /* Fondo responsivo corregido a background.png */
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url("../images/background.png");
     background-size: cover;
     background-position: center;
 }
 
-/* ==========================================================================
-   CONTENEDOR PRINCIPAL Y ZONAS DE SEGURIDAD (SAFE AREA)
-   ========================================================================== */
 #root {
     width: 100%;
     height: 100%;
@@ -76,21 +66,18 @@ body {
 
 .view-container {
     width: 100%;
-    max-width: 480px; /* Tamaño máximo móvil */
+    max-width: 480px;
     height: 100vh;
     height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    /* Respeta los botones del sistema Android/iOS sin tapa ni cortar */
     padding: max(10px, env(safe-area-inset-top)) 18px max(24px, env(safe-area-inset-bottom)) 18px;
     overflow: hidden;
 }
 
-/* ==========================================================================
-   VISTA 1: REGISTRO
-   ========================================================================== */
+/* --- LOGO Y ENCABEZADO --- */
 .brand-header {
     width: 100%;
     display: flex;
@@ -100,10 +87,11 @@ body {
 }
 
 .logo-anglo {
-    height: 24px;
+    height: 26px; /* Aumentado ligeramente */
     cursor: pointer;
 }
 
+/* --- VISTA REGISTRO --- */
 .campaign-logo {
     width: 100%;
     display: flex;
@@ -120,12 +108,11 @@ body {
     object-fit: contain;
 }
 
-/* Tarjeta tipo Glassmorphism Oscuro */
 .card-glass {
     background: rgba(26, 26, 26, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius-lg);
-    padding: clamp(15px, 3vh, 30px) 20px;
+    padding: clamp(18px, 3.2vh, 32px) 20px;
     width: 100%;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     flex-shrink: 0;
@@ -133,26 +120,26 @@ body {
 
 .card-title {
     text-align: center;
-    font-size: 15px;
+    font-size: 16px; /* Aumentado de 15px */
     letter-spacing: 1px;
-    margin-bottom: clamp(12px, 2.5vh, 25px);
+    margin-bottom: clamp(14px, 2.8vh, 25px);
     font-weight: 700;
 }
 
 .form-container {
     display: flex;
     flex-direction: column;
-    gap: clamp(8px, 1.8vh, 15px);
+    gap: clamp(10px, 2vh, 15px);
 }
 
 .input-field {
     background-color: var(--color-dark-gray);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--color-text-light);
-    padding: clamp(12px, 1.8vh, 18px) 20px;
+    padding: clamp(13px, 2vh, 18px) 20px;
     border-radius: var(--border-radius-md);
     font-family: var(--font-main);
-    font-size: 14px;
+    font-size: 15px; /* Aumentado de 14px */
     outline: none;
     transition: border 0.3s ease;
     text-align: center;
@@ -172,11 +159,11 @@ body {
     background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-dark));
     color: #000;
     border: none;
-    padding: clamp(12px, 2vh, 18px);
+    padding: clamp(14px, 2.2vh, 18px);
     border-radius: var(--border-radius-md);
     font-family: var(--font-main);
     font-weight: 700;
-    font-size: 16px;
+    font-size: 17px; /* Aumentado de 16px */
     letter-spacing: 1px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(255, 184, 28, 0.3);
@@ -188,17 +175,33 @@ body {
     transform: scale(0.98);
 }
 
-/* ==========================================================================
-   VISTA 2: BRAVÓMETRO
-   ========================================================================== */
+.btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--color-text-light);
+    padding: 12px;
+    border-radius: var(--border-radius-md);
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 14px; /* Aumentado de 13px */
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-secondary:active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- VISTA BRAVÓMETRO --- */
 .bravometro-header {
     text-align: center;
-    margin-bottom: clamp(5px, 1.5vh, 15px);
+    margin-bottom: clamp(6px, 1.5vh, 15px);
     flex-shrink: 0;
 }
 
 .title-bravometro {
-    font-size: clamp(22px, 3.5vh, 28px);
+    font-size: clamp(24px, 3.8vh, 30px); /* Aumentado de 22-28px */
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -207,7 +210,7 @@ body {
 
 .subtitle-bravometro {
     text-align: center;
-    font-size: 13px;
+    font-size: 14px; /* Aumentado de 13px */
     font-weight: bold;
 }
 
@@ -219,10 +222,9 @@ body {
     width: 100%;
     gap: 12px;
     flex: 1;
-    min-height: 0; /* Previene scroll no deseado */
+    min-height: 0;
 }
 
-/* --- TERMÓMETRO (CSS PURO) --- */
 .thermo-container {
     width: 50px;
     display: flex;
@@ -242,16 +244,12 @@ body {
 
 .thermo-mask {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background-color: var(--color-dark-gray);
     transition: height 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     border-bottom: 2px solid rgba(0,0,0,0.5);
 }
 
-/* --- PANEL DE INFO --- */
 .info-panel {
     flex: 1;
     display: flex;
@@ -260,7 +258,7 @@ body {
 }
 
 .percentage-display {
-    font-size: clamp(36px, 5vh, 50px);
+    font-size: clamp(40px, 5.5vh, 54px); /* Aumentado de 36-50px */
     font-weight: 900;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
     margin-bottom: 2px;
@@ -290,13 +288,13 @@ body {
     display: inline-block;
     border: 2px solid var(--color-dark);
     align-self: flex-start;
-    font-size: 12px;
+    font-size: 13px; /* Aumentado de 12px */
 }
 
 .level-desc {
-    font-size: 12px;
+    font-size: 13px; /* Aumentado de 12px */
     font-weight: bold;
-    line-height: 1.2;
+    line-height: 1.25;
     margin: 4px 0;
 }
 
@@ -311,12 +309,12 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 8px;
-    font-size: 10px;
+    font-size: 11px; /* Aumentado de 10px */
 }
 
 .skill-icon {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .skill-text strong {
@@ -327,7 +325,6 @@ body {
     color: var(--color-text-muted);
 }
 
-/* --- FOOTER Y STATS --- */
 .bravometro-footer {
     width: 100%;
     margin-top: 8px;
@@ -346,7 +343,7 @@ body {
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 14px; /* Aumentado de 13px */
 }
 
 .user-info {
@@ -364,12 +361,10 @@ body {
 }
 
 .user-score {
-    font-size: 16px;
+    font-size: 17px; /* Aumentado de 16px */
 }
 
-/* ==========================================================================
-   VISTA 3: ESTACIONES (MENÚ PRINCIPAL)
-   ========================================================================== */
+/* --- VISTA ESTACIONES (GRID) --- */
 .estaciones-view {
     padding-top: 5px;
 }
@@ -382,7 +377,7 @@ body {
 }
 
 .title-estaciones {
-    font-size: clamp(15px, 2.2vh, 18px);
+    font-size: clamp(17px, 2.5vh, 20px); /* Aumentado de 15-18px */
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -393,27 +388,25 @@ body {
 }
 
 .subtitle-estaciones {
-    font-size: 12px;
+    font-size: 13px; /* Aumentado de 12px */
     margin-top: 2px;
 }
 
-/* --- CUADRÍCULA FIT (GRID 12 ESTACIONES) --- */
 .grid-estaciones {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    gap: clamp(5px, 1vh, 10px);
+    gap: clamp(6px, 1vh, 10px);
     width: 100%;
     flex: 1;
     min-height: 0;
 }
 
-/* --- TARJETAS DE ESTACIÓN --- */
 .station-card {
     background: rgba(26, 26, 26, 0.85);
     border: 1.5px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius-md);
-    padding: clamp(4px, 0.8vh, 8px) 10px;
+    padding: clamp(5px, 1vh, 8px) 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -436,13 +429,13 @@ body {
 }
 
 .station-label {
-    font-size: 9px;
+    font-size: 10px; /* Aumentado de 9px */
     color: var(--color-primary);
     font-weight: 700;
 }
 
 .station-name {
-    font-size: clamp(10px, 1.4vh, 12px);
+    font-size: clamp(11px, 1.6vh, 13px); /* Aumentado de 10-12px */
     color: var(--color-text-light);
     font-weight: 700;
     line-height: 1.1;
@@ -458,8 +451,8 @@ body {
 }
 
 .star-icon {
-    width: clamp(11px, 1.6vh, 14px);
-    height: clamp(11px, 1.6vh, 14px);
+    width: clamp(12px, 1.8vh, 15px);
+    height: clamp(12px, 1.8vh, 15px);
     transition: fill 0.3s ease;
 }
 
@@ -472,9 +465,7 @@ body {
     color: #4A4A4A;
 }
 
-/* ==========================================================================
-   VISTA 4: TRIVIA / ESTACIÓN
-   ========================================================================== */
+/* --- VISTA TRIVIA --- */
 .trivia-header {
     text-align: left;
     width: 100%;
@@ -483,13 +474,13 @@ body {
 }
 
 .title-trivia {
-    font-size: clamp(18px, 2.5vh, 22px);
+    font-size: clamp(20px, 2.8vh, 24px); /* Aumentado de 18-22px */
     font-weight: 900;
     text-transform: uppercase;
 }
 
 .subtitle-trivia {
-    font-size: 12px;
+    font-size: 13px; /* Aumentado de 12px */
     font-weight: bold;
 }
 
@@ -515,20 +506,20 @@ body {
 }
 
 .step-circle {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background-color: var(--color-dark-gray);
     color: var(--color-text-muted);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: 11px; /* Aumentado de 10px */
     font-weight: bold;
 }
 
 .step-label {
-    font-size: 8px;
+    font-size: 9px; /* Aumentado de 8px */
     color: var(--color-text-muted);
     text-transform: uppercase;
     font-weight: bold;
@@ -559,15 +550,15 @@ body {
 }
 
 .stage-title {
-    font-size: 12px;
+    font-size: 13px; /* Aumentado de 12px */
     font-weight: 900;
     margin-bottom: 4px;
 }
 
 .question-text {
-    font-size: 13px;
+    font-size: 14px; /* Aumentado de 13px */
     font-weight: bold;
-    line-height: 1.3;
+    line-height: 1.35;
 }
 
 .options-grid {
@@ -604,8 +595,8 @@ body {
     position: absolute;
     top: 6px;
     left: 6px;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     background-color: #ddd;
     color: #000;
     border-radius: 50%;
@@ -613,12 +604,12 @@ body {
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: 10px;
+    font-size: 11px; /* Aumentado de 10px */
 }
 
 .opt-text {
     padding: 6px 8px;
-    font-size: 10px;
+    font-size: 11px; /* Aumentado de 10px */
     font-weight: bold;
     text-align: left;
     display: flex;
@@ -638,7 +629,7 @@ body {
     width: 100%;
     font-family: var(--font-main);
     font-weight: 700;
-    font-size: 15px;
+    font-size: 16px;
     cursor: not-allowed;
     flex-shrink: 0;
 }
@@ -647,9 +638,7 @@ body {
     width: 100%;
 }
 
-/* ==========================================================================
-   VISTA 5: ANIMACIÓN DE ESTRELLAS (GAME JUICE RESTAURADO)
-   ========================================================================== */
+/* --- VISTA ANIMACIÓN DE ESTRELLAS --- */
 .estrellas-view {
     justify-content: space-between;
     text-align: center;
@@ -682,14 +671,14 @@ body {
 
 .title-feedback {
     color: var(--color-primary);
-    font-size: clamp(22px, 3.5vh, 26px);
+    font-size: clamp(24px, 3.8vh, 28px); /* Aumentado de 22-26px */
     font-weight: 900;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     margin-bottom: 4px;
 }
 
 .subtitle-feedback {
-    font-size: 14px;
+    font-size: 15px; /* Aumentado de 14px */
     font-weight: bold;
     color: var(--color-text-light);
     margin-bottom: clamp(20px, 4vh, 35px);
@@ -728,7 +717,7 @@ body {
     border: 2px solid var(--color-primary);
     padding: 8px 25px;
     border-radius: 30px;
-    font-size: 18px;
+    font-size: 20px; /* Aumentado de 18px */
     font-weight: 900;
     color: var(--color-primary);
     box-shadow: 0 0 15px rgba(255, 184, 28, 0.4);
@@ -738,14 +727,9 @@ body {
     display: none !important;
 }
 
-/* --- ANIMACIONES ELASTICAS (GAME JUICE) --- */
-.elastic-pop {
-    animation: elasticPopAnim 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-.elastic-pop-empty {
-    animation: elasticPopEmptyAnim 0.6s cubic-bezier(0.175, 0.885, 0.32, 1) forwards;
-}
+/* --- ANIMACIONES GENERALES --- */
+.elastic-pop { animation: elasticPopAnim 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.elastic-pop-empty { animation: elasticPopEmptyAnim 0.6s cubic-bezier(0.175, 0.885, 0.32, 1) forwards; }
 
 @keyframes elasticPopAnim {
     0% { transform: scale(0) rotate(-45deg); opacity: 0; }
@@ -773,9 +757,7 @@ body {
     z-index: -1;
 }
 
-.particles.explode {
-    animation: particleExplosion 0.6s ease-out forwards;
-}
+.particles.explode { animation: particleExplosion 0.6s ease-out forwards; }
 
 @keyframes particleExplosion {
     0% {
@@ -811,9 +793,6 @@ body {
     100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
 }
 
-/* ==========================================================================
-   ANIMACIONES GENERALES
-   ========================================================================== */
 .slide-in-bottom { animation: slideInBottom 0.5s ease-out forwards; }
 .slide-in-bottom-delayed { opacity: 0; animation: slideInBottom 0.5s ease-out 0.4s forwards; }
 .slide-in-right { opacity: 0; animation: slideInRight 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; }
@@ -834,38 +813,14 @@ body {
 @keyframes shakeAnim { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
 
 .congratulation-card { margin-top: auto; margin-bottom: auto; }
-.trophy-icon { font-size: 50px; text-align: center; margin-bottom: 10px; }
+.trophy-icon { font-size: 55px; text-align: center; margin-bottom: 10px; }
 
-
-/* --- */
-
-/* --- BOTÓN SECUNDARIO (VOLVER) --- */
-.btn-secondary {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--color-text-light);
-    padding: 10px;
-    border-radius: var(--border-radius-md);
-    font-family: var(--font-main);
-    font-weight: 700;
-    font-size: 13px;
-    width: 100%;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.btn-secondary:active {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* --- INDICADOR VISUAL PULL-TO-REFRESH --- */
+/* --- INDICADOR PULL-TO-REFRESH --- */
 .ptr-indicator {
     position: fixed;
-    top: 0;
-    left: 50%;
+    top: 0; left: 50%;
     transform: translate3d(-50%, -60px, 0);
-    width: 40px;
-    height: 40px;
+    width: 40px; height: 40px;
     background: var(--color-dark-gray);
     border: 2px solid var(--color-primary);
     border-radius: 50%;
@@ -878,6 +833,4 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-.ptr-icon {
-    font-size: 18px;
-}
+.ptr-icon { font-size: 18px; }

@@ -1,8 +1,8 @@
 import { store } from '../core/store.js';
+import { navigate } from '../core/router.js';
 import { Station1 } from './stations/Station1.js';
 import { Station3 } from './stations/Station3.js';
 import { StationCode } from './stations/StationCode.js';
-import { navigate } from '../core/router.js';
 
 export const EstacionView = () => {
     let currentStationModule = null;
@@ -23,17 +23,40 @@ export const EstacionView = () => {
                 currentStationModule = StationCode(stationId); 
                 break;
             default:
-                // Fallback temporal para Grupo C
+                // Vista temporal para estaciones en construcción (Estaciones 2, 4, 5, 6)
                 currentStationModule = {
                     render: async () => {
                         const frag = document.createDocumentFragment();
                         const div = document.createElement('div');
-                        div.className = 'view-container';
-                        div.innerHTML = `<h2 style="color:var(--color-primary); margin-top:50px;">ESTACIÓN ${stationId} EN CONSTRUCCIÓN</h2><button class="btn-primary" id="btnBackToStations">VOLVER</button>`;
+                        div.className = 'view-container station-engine-view slide-in-right';
+                        div.innerHTML = `
+                            <div class="brand-header">
+                                <img src="src/images/logoAngloamerica_bn.svg" alt="Anglo American" class="logo-anglo">
+                            </div>
+                            <div class="card-glass" style="margin-top: auto; margin-bottom: auto; text-align: center; padding: 25px 20px;">
+                                <div style="font-size: 50px; margin-bottom: 10px;">🚧</div>
+                                <h2 style="color: var(--color-primary); font-size: 20px; font-weight: 900; margin-bottom: 10px;">
+                                    ESTACIÓN ${stationId} EN CONSTRUCCIÓN
+                                </h2>
+                                <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 20px; line-height: 1.4;">
+                                    Estamos preparando el minijuego interactivo para esta sección.
+                                </p>
+                                <button id="btnBackFromConstruction" class="btn-primary pulse-btn">
+                                    VOLVER A ESTACIONES
+                                </button>
+                            </div>
+                        `;
                         frag.appendChild(div);
                         return frag;
                     },
-                    afterRender: () => {}
+                    afterRender: () => {
+                        const btnBack = document.getElementById('btnBackFromConstruction');
+                        if (btnBack) {
+                            btnBack.addEventListener('click', () => {
+                                navigate('/estaciones');
+                            });
+                        }
+                    }
                 };
         }
 
@@ -41,14 +64,6 @@ export const EstacionView = () => {
     };
 
     const afterRender = () => {
-        const btnBack = document.getElementById('btnBackToStations');
-
-        // Evento botón volver
-                btnBack.addEventListener('click', () => {
-                    navigate('/estaciones');
-                });
-
-
         if (currentStationModule && currentStationModule.afterRender) {
             currentStationModule.afterRender();
         }
