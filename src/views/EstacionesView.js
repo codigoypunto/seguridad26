@@ -7,7 +7,7 @@ export const EstacionesView = () => {
         { id: 1, name: "Percepción de Riesgo" },
         { id: 2, name: "Fatiga y Somnolencia" },
         { id: 3, name: "Caída de Rocas" },
-        { id: 4, name: "Cuidado de Manos y Dedos" },
+        { id: 4, name: "Manos y Dedos" },
         { id: 5, name: "Aislamiento de Energía" },
         { id: 6, name: "Seguridad Vial" },
         { id: 7, name: "Tema por Definir 1" },
