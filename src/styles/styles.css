@@ -15,10 +15,10 @@
 }
 
 /* ==========================================================================
-   VARIABLES GLOBALES
+   VARIABLES GLOBALES (Design System)
    ========================================================================== */
 :root {
-    --color-primary: #FFB81C;
+    --color-primary: #FFB81C; /* Amarillo/Naranja Anglo American */
     --color-primary-dark: #E5A000;
     --color-dark: #1A1A1A;
     --color-dark-gray: #2C2C2C;
@@ -28,12 +28,12 @@
     --color-danger: #DC3545;
     
     --font-main: 'AA Smart Sans', sans-serif;
-    --border-radius-md: 10px;
-    --border-radius-lg: 16px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 24px;
 }
 
 /* ==========================================================================
-   RESET Y BASE STRICT-VIEWPORT (CERO SCROLL)
+   RESET Y BASE RESPONSIVA (CERO DESBORDE)
    ========================================================================== */
 * {
     margin: 0;
@@ -45,132 +45,116 @@
 html, body {
     width: 100vw;
     height: 100vh;
-    height: 100dvh; /* Dynamic Viewport Height */
-    max-height: 100dvh;
+    height: 100dvh; /* Dynamic Viewport Height para navegadores móviles */
     overflow: hidden !important;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: var(--color-dark);
+}
+
+body {
     font-family: var(--font-main);
+    background-color: var(--color-dark); 
     color: var(--color-text-light);
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.95)), url('../images/background.png');
+    /* Fondo responsivo corregido a background.png */
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url("../images/background.png");
     background-size: cover;
     background-position: center;
 }
 
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL Y ZONAS DE SEGURIDAD (SAFE AREA)
+   ========================================================================== */
 #root {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-}
-
-/* ==========================================================================
-   CONTENEDOR GLOBAL CON MARGENES DE SEGURIDAD (SAFE AREA)
-   ========================================================================== */
-.view-container {
-    width: 100%;
-    max-width: 480px;
-    height: 100%;
-    max-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: max(8px, env(safe-area-inset-top)) 15px max(20px, env(safe-area-inset-bottom)) 15px;
+    position: relative;
     overflow: hidden;
 }
 
-/* Encabezado */
+.view-container {
+    width: 100%;
+    max-width: 480px; /* Tamaño máximo móvil */
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* Respeta los botones del sistema Android/iOS sin tapa ni cortar */
+    padding: max(10px, env(safe-area-inset-top)) 18px max(24px, env(safe-area-inset-bottom)) 18px;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   VISTA 1: REGISTRO
+   ========================================================================== */
 .brand-header {
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    padding-bottom: 2px;
+    padding-bottom: 5px;
     flex-shrink: 0;
 }
 
 .logo-anglo {
-    height: 18px;
+    height: 24px;
     cursor: pointer;
 }
 
-/* Botón Principal (Con margen dinámico contra la barra de Android) */
-.btn-primary {
-    background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-dark));
-    color: #000;
-    border: none;
-    padding: 12px;
-    border-radius: var(--border-radius-md);
-    font-family: var(--font-main);
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1px;
+.campaign-logo {
     width: 100%;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(255, 184, 28, 0.3);
-    flex-shrink: 0;
-}
-
-.btn-primary:active {
-    transform: scale(0.98);
-}
-
-.card-glass {
-    background: rgba(26, 26, 26, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--border-radius-lg);
-    padding: 15px 12px;
-    width: 100%;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     display: flex;
-    flex-direction: column;
     justify-content: center;
-}
-
-/* ==========================================================================
-   VISTA 1: REGISTRO (ESCALADO DE LOGO Y CAMPOS)
-   ========================================================================== */
-.register-view .campaign-logo {
-    flex: 1 1 auto;
-    min-height: 0; /* Permite reducir el tamaño de la imagen según pantalla */
-    display: flex;
     align-items: center;
-    justify-content: center;
+    flex: 1;
+    min-height: 0;
     padding: 10px 0;
 }
 
-.register-view .campaign-logo img {
-    max-width: 75%;
+.campaign-logo img {
+    max-width: 85%;
     max-height: 100%;
     object-fit: contain;
 }
 
+/* Tarjeta tipo Glassmorphism Oscuro */
+.card-glass {
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-lg);
+    padding: clamp(15px, 3vh, 30px) 20px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    flex-shrink: 0;
+}
+
 .card-title {
     text-align: center;
-    font-size: 13px;
+    font-size: 15px;
     letter-spacing: 1px;
-    margin-bottom: 12px;
+    margin-bottom: clamp(12px, 2.5vh, 25px);
     font-weight: 700;
 }
 
 .form-container {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: clamp(8px, 1.8vh, 15px);
 }
 
 .input-field {
     background-color: var(--color-dark-gray);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--color-text-light);
-    padding: 10px 12px;
+    padding: clamp(12px, 1.8vh, 18px) 20px;
     border-radius: var(--border-radius-md);
     font-family: var(--font-main);
-    font-size: 12px;
+    font-size: 14px;
     outline: none;
+    transition: border 0.3s ease;
     text-align: center;
 }
 
@@ -181,6 +165,27 @@ html, body {
 .input-field::placeholder {
     color: var(--color-text-muted);
     font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-dark));
+    color: #000;
+    border: none;
+    padding: clamp(12px, 2vh, 18px);
+    border-radius: var(--border-radius-md);
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 184, 28, 0.3);
+    transition: transform 0.1s ease;
+    flex-shrink: 0;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
 }
 
 /* ==========================================================================
@@ -188,52 +193,65 @@ html, body {
    ========================================================================== */
 .bravometro-header {
     text-align: center;
-    margin-bottom: 6px;
+    margin-bottom: clamp(5px, 1.5vh, 15px);
     flex-shrink: 0;
 }
 
 .title-bravometro {
-    font-size: 20px;
-    font-weight: 900;
+    font-size: clamp(22px, 3.5vh, 28px);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .subtitle-bravometro {
-    font-size: 11px;
+    text-align: center;
+    font-size: 13px;
     font-weight: bold;
 }
 
 .bravometro-layout {
     display: flex;
     flex-direction: row;
-    gap: 10px;
-    flex: 1;
-    min-height: 0;
+    align-items: stretch;
+    justify-content: space-between;
     width: 100%;
+    gap: 12px;
+    flex: 1;
+    min-height: 0; /* Previene scroll no deseado */
 }
 
+/* --- TERMÓMETRO (CSS PURO) --- */
 .thermo-container {
-    width: 38px;
+    width: 50px;
     display: flex;
     justify-content: center;
 }
 
 .thermo-track {
-    width: 30px;
+    width: 38px;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 25px;
     background: linear-gradient(to top, var(--color-danger) 0%, var(--color-primary) 50%, var(--color-success) 100%);
     position: relative;
-    border: 2px solid rgba(255,255,255,0.1);
+    border: 3px solid rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.5);
     overflow: hidden;
 }
 
 .thermo-mask {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: var(--color-dark-gray);
     transition: height 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-bottom: 2px solid rgba(0,0,0,0.5);
 }
 
+/* --- PANEL DE INFO --- */
 .info-panel {
     flex: 1;
     display: flex;
@@ -242,60 +260,80 @@ html, body {
 }
 
 .percentage-display {
-    font-size: 32px;
+    font-size: clamp(36px, 5vh, 50px);
     font-weight: 900;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    margin-bottom: 2px;
     line-height: 1;
-    margin-bottom: 4px;
 }
 
 .level-card {
     background: rgba(26, 26, 26, 0.85);
     border: 2px solid;
     border-radius: var(--border-radius-md);
-    padding: 8px;
+    padding: clamp(10px, 1.8vh, 15px) 12px;
+    backdrop-filter: blur(5px);
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    position: relative;
     min-height: 0;
 }
 
 .level-badge {
     color: #000;
     font-weight: 800;
-    font-size: 10px;
     text-align: center;
-    padding: 2px 6px;
+    padding: 4px 10px;
     border-radius: var(--border-radius-md);
+    display: inline-block;
+    border: 2px solid var(--color-dark);
     align-self: flex-start;
+    font-size: 12px;
 }
 
 .level-desc {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
-    margin: 3px 0;
+    line-height: 1.2;
+    margin: 4px 0;
 }
 
 .skills-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: clamp(4px, 1vh, 10px);
 }
 
 .skills-list li {
     display: flex;
     align-items: flex-start;
-    gap: 5px;
-    font-size: 9px;
+    gap: 8px;
+    font-size: 10px;
 }
 
+.skill-icon {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.skill-text strong {
+    display: block;
+    color: var(--color-text-light);
+}
+.skill-text span {
+    color: var(--color-text-muted);
+}
+
+/* --- FOOTER Y STATS --- */
 .bravometro-footer {
     width: 100%;
-    margin-top: 6px;
+    margin-top: 8px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     flex-shrink: 0;
 }
 
@@ -303,68 +341,108 @@ html, body {
     background: rgba(26, 26, 26, 0.9);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: var(--border-radius-md);
-    padding: 6px 10px;
+    padding: 10px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 11px;
     font-weight: bold;
+    font-size: 13px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.user-score {
+    font-size: 16px;
 }
 
 /* ==========================================================================
-   VISTA 3: ESTACIONES (GRID ULTRA-COMPACTO DE 12 MÓDULOS)
+   VISTA 3: ESTACIONES (MENÚ PRINCIPAL)
    ========================================================================== */
+.estaciones-view {
+    padding-top: 5px;
+}
+
 .estaciones-header {
     text-align: center;
-    margin-bottom: 6px;
+    margin-bottom: clamp(6px, 1.5vh, 15px);
+    width: 100%;
     flex-shrink: 0;
 }
 
 .title-estaciones {
-    font-size: 15px;
+    font-size: clamp(15px, 2.2vh, 18px);
     font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.text-primary {
+    color: var(--color-primary);
 }
 
 .subtitle-estaciones {
-    font-size: 11px;
+    font-size: 12px;
+    margin-top: 2px;
 }
 
+/* --- CUADRÍCULA FIT (GRID 12 ESTACIONES) --- */
 .grid-estaciones {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(6, 1fr); /* 6 filas proporcionales ajustadas exactamente a la pantalla */
-    gap: 5px;
+    grid-template-rows: repeat(6, 1fr);
+    gap: clamp(5px, 1vh, 10px);
     width: 100%;
     flex: 1;
     min-height: 0;
 }
 
+/* --- TARJETAS DE ESTACIÓN --- */
 .station-card {
     background: rgba(26, 26, 26, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius-md);
-    padding: 4px 8px;
+    padding: clamp(4px, 0.8vh, 8px) 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    align-items: flex-start;
+    justify-content: space-between;
     cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(5px);
     text-align: left;
-    height: 100%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     min-height: 0;
+}
+
+.station-card:active {
+    transform: scale(0.95);
 }
 
 .station-card.visited {
     border-color: var(--color-primary);
+    box-shadow: 0 0 10px rgba(255, 184, 28, 0.2);
 }
 
 .station-label {
-    font-size: 8px;
+    font-size: 9px;
     color: var(--color-primary);
     font-weight: 700;
 }
 
 .station-name {
-    font-size: 10px;
+    font-size: clamp(10px, 1.4vh, 12px);
     color: var(--color-text-light);
     font-weight: 700;
     line-height: 1.1;
@@ -375,28 +453,45 @@ html, body {
 
 .stars-container {
     display: flex;
-    gap: 2px;
+    gap: 3px;
+    width: 100%;
 }
 
 .star-icon {
-    width: 10px;
-    height: 10px;
+    width: clamp(11px, 1.6vh, 14px);
+    height: clamp(11px, 1.6vh, 14px);
+    transition: fill 0.3s ease;
 }
 
-.star-icon.filled { color: var(--color-primary); }
-.star-icon.empty { color: #4A4A4A; }
+.star-icon.filled {
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 2px rgba(255,184,28,0.8));
+}
+
+.star-icon.empty {
+    color: #4A4A4A;
+}
 
 /* ==========================================================================
-   VISTA 4: TRIVIA / ESTACIÓN ENGINE
+   VISTA 4: TRIVIA / ESTACIÓN
    ========================================================================== */
 .trivia-header {
+    text-align: left;
     width: 100%;
-    margin-bottom: 6px;
+    margin-bottom: clamp(6px, 1.2vh, 12px);
     flex-shrink: 0;
 }
 
-.title-trivia { font-size: 16px; font-weight: 900; }
-.subtitle-trivia { font-size: 11px; }
+.title-trivia {
+    font-size: clamp(18px, 2.5vh, 22px);
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.subtitle-trivia {
+    font-size: 12px;
+    font-weight: bold;
+}
 
 .progress-bar {
     display: flex;
@@ -404,33 +499,86 @@ html, body {
     justify-content: space-between;
     width: 100%;
     background: rgba(26, 26, 26, 0.8);
-    padding: 4px 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 6px 12px;
     border-radius: var(--border-radius-md);
-    margin-bottom: 8px;
+    margin-bottom: clamp(8px, 1.5vh, 15px);
     flex-shrink: 0;
 }
 
-.step-circle { width: 18px; height: 18px; font-size: 9px; }
-.step-label { font-size: 8px; }
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    z-index: 2;
+}
+
+.step-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--color-dark-gray);
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.step-label {
+    font-size: 8px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.progress-step.active .step-circle {
+    background-color: var(--color-primary);
+    color: #000;
+    box-shadow: 0 0 10px rgba(255, 184, 28, 0.5);
+}
+
+.progress-step.active .step-label {
+    color: var(--color-primary);
+}
+
+.progress-line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: rgba(255,255,255,0.2);
+    margin: 0 4px;
+    transform: translateY(-6px);
+}
 
 .question-container {
     text-align: center;
-    margin-bottom: 6px;
+    margin-bottom: clamp(6px, 1.2vh, 15px);
     flex-shrink: 0;
 }
 
-.stage-title { font-size: 11px; font-weight: 900; }
-.question-text { font-size: 12px; font-weight: bold; line-height: 1.2; }
+.stage-title {
+    font-size: 12px;
+    font-weight: 900;
+    margin-bottom: 4px;
+}
+
+.question-text {
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.3;
+}
 
 .options-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 8px;
+    gap: clamp(8px, 1.2vh, 12px);
     width: 100%;
     flex: 1;
     min-height: 0;
-    margin-bottom: 8px;
+    margin-bottom: clamp(8px, 1.5vh, 15px);
 }
 
 .option-card {
@@ -438,6 +586,8 @@ html, body {
     border-radius: var(--border-radius-md);
     overflow: hidden;
     border: 2px solid transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
 }
@@ -452,50 +602,236 @@ html, body {
 
 .opt-letter {
     position: absolute;
-    top: 4px; left: 4px;
-    width: 18px; height: 18px;
-    font-size: 9px;
+    top: 6px;
+    left: 6px;
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 900;
+    font-size: 10px;
 }
 
 .opt-text {
-    padding: 4px 6px;
-    font-size: 9px;
+    padding: 6px 8px;
+    font-size: 10px;
     font-weight: bold;
+    text-align: left;
+    display: flex;
+    align-items: center;
 }
 
 .option-card.selected { border-color: var(--color-primary); }
-.option-card.correct { border-color: var(--color-success); }
-.option-card.incorrect { border-color: var(--color-danger); opacity: 0.7; }
+.option-card.correct { border-color: var(--color-success); background-color: rgba(40, 167, 69, 0.1); }
+.option-card.incorrect { border-color: var(--color-danger); background-color: rgba(220, 53, 69, 0.1); opacity: 0.7; }
 
 .btn-disabled {
     background: #4A4A4A;
     color: #888;
     border: none;
-    padding: 12px;
+    padding: clamp(12px, 2vh, 18px);
     border-radius: var(--border-radius-md);
     width: 100%;
     font-family: var(--font-main);
     font-weight: 700;
-    font-size: 14px;
+    font-size: 15px;
     cursor: not-allowed;
     flex-shrink: 0;
 }
 
-/* ==========================================================================
-   ANIMACIONES & GAME JUICE
-   ========================================================================== */
-.shake { animation: shakeAnim 0.5s cubic-bezier(.36,.07,.19,.97) both; border-color: var(--color-danger) !important; }
-@keyframes shakeAnim {
-    10%, 90% { transform: translate3d(-1px, 0, 0); }
-    20%, 80% { transform: translate3d(2px, 0, 0); }
-    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-    40%, 60% { transform: translate3d(4px, 0, 0); }
+#actionBtn {
+    width: 100%;
 }
 
-.pulse-btn { animation: pulseGlow 2s infinite; }
-@keyframes pulseGlow {
-    0% { box-shadow: 0 0 0 0 rgba(255, 184, 28, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 184, 28, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 184, 28, 0); }
+/* ==========================================================================
+   VISTA 5: ANIMACIÓN DE ESTRELLAS (GAME JUICE RESTAURADO)
+   ========================================================================== */
+.estrellas-view {
+    justify-content: space-between;
+    text-align: center;
+    position: relative;
 }
+
+.glow-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(255, 184, 28, 0.25) 0%, rgba(26, 26, 26, 0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+    animation: pulseGlowBg 3s infinite alternate;
+}
+
+.estrellas-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+}
+
+.title-feedback {
+    color: var(--color-primary);
+    font-size: clamp(22px, 3.5vh, 26px);
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    margin-bottom: 4px;
+}
+
+.subtitle-feedback {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--color-text-light);
+    margin-bottom: clamp(20px, 4vh, 35px);
+}
+
+.big-stars-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: clamp(20px, 3.5vh, 30px);
+}
+
+.star-wrapper {
+    position: relative;
+    width: clamp(48px, 8vh, 60px);
+    height: clamp(48px, 8vh, 60px);
+}
+
+.star-svg {
+    width: 100%;
+    height: 100%;
+    transform: scale(0);
+}
+
+.star-svg.empty {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.star-svg.filled {
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 12px rgba(255,184,28,0.9));
+}
+
+.score-summary {
+    background: rgba(26, 26, 26, 0.9);
+    border: 2px solid var(--color-primary);
+    padding: 8px 25px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--color-primary);
+    box-shadow: 0 0 15px rgba(255, 184, 28, 0.4);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- ANIMACIONES ELASTICAS (GAME JUICE) --- */
+.elastic-pop {
+    animation: elasticPopAnim 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.elastic-pop-empty {
+    animation: elasticPopEmptyAnim 0.6s cubic-bezier(0.175, 0.885, 0.32, 1) forwards;
+}
+
+@keyframes elasticPopAnim {
+    0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+    50% { transform: scale(1.4) rotate(15deg); opacity: 1; }
+    70% { transform: scale(0.9) rotate(-5deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes elasticPopEmptyAnim {
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulseGlowBg {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+}
+
+.particles {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.particles.explode {
+    animation: particleExplosion 0.6s ease-out forwards;
+}
+
+@keyframes particleExplosion {
+    0% {
+        box-shadow: 0 0 0 0 var(--color-primary), 0 0 0 0 var(--color-primary), 0 0 0 0 var(--color-primary), 0 0 0 0 var(--color-primary);
+    }
+    100% {
+        box-shadow: -35px -35px 0 -2px rgba(255,184,28,0), 35px -35px 0 -2px rgba(255,184,28,0), -35px 35px 0 -2px rgba(255,184,28,0), 35px 35px 0 -2px rgba(255,184,28,0);
+    }
+}
+
+.floating-particles-layer {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.floating-particle {
+    position: absolute;
+    bottom: -10px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatUp linear infinite;
+    box-shadow: 0 0 5px var(--color-primary);
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(0.5); opacity: 0; }
+    20% { opacity: 0.8; }
+    80% { opacity: 0.8; }
+    100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+}
+
+/* ==========================================================================
+   ANIMACIONES GENERALES
+   ========================================================================== */
+.slide-in-bottom { animation: slideInBottom 0.5s ease-out forwards; }
+.slide-in-bottom-delayed { opacity: 0; animation: slideInBottom 0.5s ease-out 0.4s forwards; }
+.slide-in-right { opacity: 0; animation: slideInRight 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; }
+.bounce-in-top { opacity: 0; animation: bounceInTop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.pop-in { opacity: 0; transform: scale(0.8); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s forwards; }
+.pulse-btn { animation: pulseGlow 2s infinite; }
+.pulse-once { animation: scalePulse 0.4s ease-out; }
+.btn-gold-glow { box-shadow: 0 0 20px rgba(255,184,28, 0.8); animation: pulseGlow 1s infinite; }
+
+.shake { animation: shakeAnim 0.5s cubic-bezier(.36,.07,.19,.97) both; border-color: var(--color-danger) !important; }
+
+@keyframes slideInBottom { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes slideInRight { from { transform: translateX(50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes bounceInTop { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes popIn { to { transform: scale(1); opacity: 1; } }
+@keyframes pulseGlow { 0% { box-shadow: 0 0 0 0 rgba(255, 184, 28, 0.4); } 70% { box-shadow: 0 0 0 12px rgba(255, 184, 28, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 184, 28, 0); } }
+@keyframes scalePulse { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
+@keyframes shakeAnim { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
+
+.congratulation-card { margin-top: auto; margin-bottom: auto; }
+.trophy-icon { font-size: 50px; text-align: center; margin-bottom: 10px; }
