@@ -309,7 +309,7 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 8px;
-    font-size: 11px; /* Aumentado de 10px */
+    font-size: 15px; /* Aumentado de 10px */
 }
 
 .skill-icon {
@@ -429,13 +429,13 @@ body {
 }
 
 .station-label {
-    font-size: 10px; /* Aumentado de 9px */
+    font-size: 13px; /* Aumentado de 9px */
     color: var(--color-primary);
     font-weight: 700;
 }
 
 .station-name {
-    font-size: clamp(11px, 1.6vh, 13px); /* Aumentado de 10-12px */
+    font-size: clamp(11px, 1.6vh, 15px); /* Aumentado de 10-12px */
     color: var(--color-text-light);
     font-weight: 700;
     line-height: 1.1;
