@@ -435,7 +435,7 @@ body {
 .subtitle-estaciones {
     font-size: 16px;
     margin-top: 2px;
-    color: var(--color-text-muted);
+    color: var(--color-text-light);
 }
 
 .grid-estaciones {
