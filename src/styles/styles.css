@@ -250,7 +250,7 @@ body {
     text-align: center;
     font-size: 14px;
     font-weight: bold;
-    color: var(--color-text-muted);
+    color: var(--color-text-light);
 }
 
 .bravometro-layout {
@@ -542,7 +542,7 @@ body {
 .subtitle-trivia {
     font-size: clamp(20px, 2.8vh, 24px);
     font-weight: bold;
-    color: var(--color);
+    color: var(--color-text-light);
 }
 
 .progress-bar {
