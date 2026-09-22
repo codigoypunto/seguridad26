@@ -534,15 +534,15 @@ body {
 }
 
 .title-trivia {
-    font-size: clamp(20px, 2.8vh, 24px);
+    font-size: 16px;
     font-weight: 900;
     text-transform: uppercase;
 }
 
 .subtitle-trivia {
-    font-size: 14px;
+    font-size: clamp(20px, 2.8vh, 24px);
     font-weight: bold;
-    color: var(--color-text-muted);
+    color: var(--color);
 }
 
 .progress-bar {

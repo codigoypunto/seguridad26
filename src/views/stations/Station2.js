@@ -31,7 +31,7 @@ export const Station2 = () => {
                 <!-- Encabezado con Temporizador -->
                 <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: rgba(0, 25, 90, 0.6); padding: 8px 12px; border-radius: var(--border-radius-md); border: 1.5px solid var(--color-cyan-glow);">
                     <span style="font-weight: 800; font-size: 13px; color: var(--color-cyan-glow);">NIVEL DE ALERTA</span>
-                    <span id="timerDisplay" style="font-weight: 900; font-size: 18px; color: var(--color-primary);">⏱️ 10.0s</span>
+                    <span id="timerDisplay" style="font-weight: 900; font-size: 18px; color: var(--color-primary);">⏱️ 5.0s</span>
                 </div>
 
                 <!-- Avatar / Estado del Operador -->
@@ -90,15 +90,15 @@ export const Station2 = () => {
             energyFill.style.width = `${energy}%`;
             energyPercentage.innerText = `${Math.round(energy)}%`;
 
-            if (energy < 26) {
+            if (energy < 50) {
                 operatorAvatar.innerText = "😴";
                 statusMessage.innerText = "¡El operador se dormirá!";
                 statusMessage.style.color = "var(--color-danger)";
-            } else if (energy < 51) {
+            } else if (energy < 70) {
                 operatorAvatar.innerText = "🥱";
                 statusMessage.innerText = "¡Combatiendo la somnolencia!";
                 statusMessage.style.color = "var(--color-primary)";
-            } else if (energy < 76) {
+            } else if (energy < 90) {
                 operatorAvatar.innerText = "😐";
                 statusMessage.innerText = "¡Nivel de atención subiendo!";
                 statusMessage.style.color = "var(--color-cyan-glow)";
@@ -121,9 +121,9 @@ export const Station2 = () => {
 
             // Cálculo de estrellas
             let stars = 1;
-            if (energy >= 76) stars = 4;
-            else if (energy >= 51) stars = 3;
-            else if (energy >= 26) stars = 2;
+            if (energy >= 91) stars = 4;
+            else if (energy >= 71) stars = 3;
+            else if (energy >= 51) stars = 2;
 
             updateProgress(2, stars);
 
@@ -140,7 +140,7 @@ export const Station2 = () => {
             tapBtn.style.color = "#FFFFFF";
 
             const startTime = Date.now();
-            const totalDuration = 10000;
+            const totalDuration = 5000;
 
             timer = setInterval(() => {
                 const elapsed = Date.now() - startTime;
