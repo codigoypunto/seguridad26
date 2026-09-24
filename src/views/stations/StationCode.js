@@ -3,12 +3,12 @@ import { navigate } from '../../core/router.js';
 
 export const StationCode = (stationId) => {
     const stationCodes = {
-        7: "TRX9",
-        8: "V7KL",
-        9: "J2F6",
-        10: "M4C8",
-        11: "Q9N2",
-        12: "W3B7"
+        7: "TEST",
+        8: "TEST",
+        9: "TEST",
+        10: "TEST",
+        11: "TEST",
+        12: "TEST"
     };
 
     const secretCode = stationCodes[stationId];
@@ -30,12 +30,12 @@ export const StationCode = (stationId) => {
                 <div style="text-align: center; font-size: 40px; margin-bottom: 5px;">🔐</div>
                 <h3 class="card-title" style="color: var(--color-primary); margin-bottom: 8px;">INGRESA EL CÓDIGO</h3>
                 <p style="text-align: center; font-size: 12px; margin-bottom: 15px; color: var(--color-text-muted);">
-                    Solicita a tu capacitador el código de 4 caracteres para ganar tus 4 estrellas.
+                    Solicita a tu capacitador el código secreto para ganar tus 4 estrellas.
                 </p>
                 <form id="codeForm" class="form-container">
-                    <input type="text" id="stationCodeInput" class="input-field" placeholder="4 CARACTERES" maxlength="10" required autocomplete="off" style="text-transform: uppercase; font-size: 16px; font-weight: bold; letter-spacing: 2px;">
+                    <input type="text" id="stationCodeInput" class="input-field" placeholder="PALABRA DE SEGURIDAD" maxlength="10" required autocomplete="off" style="text-transform: uppercase; font-size: 16px; font-weight: bold; letter-spacing: 2px;">
                     <div id="codeFeedback" style="color: var(--color-danger); text-align: center; font-size: 11px; height: 15px; margin-top:-2px;"></div>
-                    <button type="submit" class="btn-primary pulse-btn">VERIFICAR CÓDIGO</button>
+                    <button type="submit" class="btn-primary pulse-btn">VERIFICAR</button>
                     <button type="button" id="btnBackToStations" class="btn-secondary">VOLVER A ESTACIONES</button>
                 </form>
             </div>
