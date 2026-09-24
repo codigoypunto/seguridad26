@@ -112,7 +112,7 @@ export const BravometroView = () => {
                 <div class="user-stats">
                     <div class="user-info">
                         <span class="user-dot"></span>
-                        <span class="user-dni">Usuario: ${dni.substring(0, 6)}...</span>
+                        <span class="user-dni">Brav@: ${dni.substring(0, 6)}...</span>
                     </div>
                     <div class="user-score" style="color: var(--color-primary)">
                         ${puntaje} pts

@@ -16,7 +16,7 @@ export const initSecretReset = () => {
             if (tapCount >= 5) {
                 tapCount = 0;
                 clearTimeout(tapTimer);
-                const confirmReset = confirm("⚠️ MODO DESARROLLADOR: ¿Deseas borrar todo el progreso local y reiniciar la app?");
+                const confirmReset = confirm("⚠️ MODO DESARROLLADOR: ¿Deseas borrar todo el progreso local y reiniciar la app? v1.0.0");
                 if (confirmReset) {
                     localStorage.clear();
                     alert("Almacenamiento local borrado con éxito.");
