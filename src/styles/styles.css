@@ -422,7 +422,7 @@ body {
 }
 
 .title-estaciones {
-    font-size: clamp(17px, 2.5vh, 20px);
+    font-size: 18px);
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -495,7 +495,7 @@ body {
 }
 
 .station-name {
-    font-size: clamp(14px, 2vh, 16px);
+    font-size: 18px;
     color: var(--color-text-light);
     font-weight: 700;
     line-height: 1.1;

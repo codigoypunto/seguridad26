@@ -36,7 +36,7 @@ export const EstacionView = () => {
                             <div class="card-glass" style="margin-top: auto; margin-bottom: auto; text-align: center; padding: 25px 20px;">
                                 <div style="font-size: 50px; margin-bottom: 10px;">🚧</div>
                                 <h2 style="color: var(--color-cyan-glow); font-size: 20px; font-weight: 900; margin-bottom: 10px;">
-                                    ESTACIÓN ${stationId} EN CONSTRUCCIÓN
+                                    ESTACIÓN EN CONSTRUCCIÓN
                                 </h2>
                                 <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 20px; line-height: 1.4;">
                                     Estamos preparando el minijuego interactivo para esta sección.
