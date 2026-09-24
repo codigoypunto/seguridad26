@@ -20,7 +20,7 @@ export const RegisterView = () => {
             <div class="card-glass">
                 <h3 class="card-title">¡EL PODER EN CADA HISTORIA!</h3>
                 <form id="registrationForm" class="form-container">
-                    <input type="text" id="dni" class="input-field" placeholder="DNI/CARNÉ DE EXTRANJERÍA" required autocomplete="off">
+                    <input type="text" id="dni" class="input-field" placeholder="DNI/CE" required autocomplete="off">
                     <input type="text" id="company" class="input-field" placeholder="EMPRESA: NEWREST/SECHE/..." required autocomplete="off">
                     <input type="text" id="lugar" class="input-field" placeholder="LUGAR: SALVEANI/CORTADERA/..." required autocomplete="off">
                     <button type="submit" class="btn-primary">REGISTRARSE</button>

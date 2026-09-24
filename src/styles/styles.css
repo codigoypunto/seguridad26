@@ -41,6 +41,10 @@
     --font-main: 'AA Smart Sans', sans-serif;
     --border-radius-md: 12px;
     --border-radius-lg: 24px;
+
+    --font-size-head: 24px;
+    --font-size-title: 18px;
+    --font-size-subtitle: 16px;
 }
 
 /* ==========================================================================
@@ -151,7 +155,7 @@ body {
 
 .card-title {
     text-align: center;
-    font-size: 16px;
+    font-size: var(--font-size-title);
     letter-spacing: 1px;
     margin-bottom: clamp(14px, 2.8vh, 25px);
     font-weight: 700;
@@ -172,7 +176,7 @@ body {
     padding: clamp(13px, 2vh, 18px) 20px;
     border-radius: var(--border-radius-md);
     font-family: var(--font-main);
-    font-size: 16px;
+    font-size: var(--font-size-subtitle);
     outline: none;
     transition: all 0.3s ease;
     text-align: center;
@@ -199,7 +203,7 @@ body {
     border-radius: var(--border-radius-md);
     font-family: var(--font-main);
     font-weight: 800;
-    font-size: 16px;
+    font-size: var(--font-size-title);
     letter-spacing: 1px;
     cursor: pointer;
     box-shadow: 0 4px 20px rgba(255, 184, 28, 0.4);
@@ -219,7 +223,7 @@ body {
     border-radius: var(--border-radius-md);
     font-family: var(--font-main);
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--font-size-subtitle);
     width: 100%;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -238,7 +242,7 @@ body {
 }
 
 .title-bravometro {
-    font-size: clamp(24px, 3.8vh, 30px);
+    font-size: var(--font-size-head);
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -248,7 +252,7 @@ body {
 
 .subtitle-bravometro {
     text-align: center;
-    font-size: 14px;
+    font-size: var(--font-size-subtitle);
     font-weight: bold;
     color: var(--color-text-light);
 }
@@ -297,7 +301,7 @@ body {
 }
 
 .percentage-display {
-    font-size: clamp(40px, 5.5vh, 54px);
+    font-size: 40px;
     font-weight: 900;
     text-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
     margin-bottom: 2px;
@@ -328,12 +332,17 @@ body {
     display: inline-block;
     border: 2px solid var(--color-cyan-subtle);
     align-self: flex-start;
-    font-size: 22px;
+    font-size: var(--font-size-head);
     box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
+    color: var(--color-text-light);
 }
 
 .level-desc {
-    font-size: 16px;
+    font-size: var(--font-size-title);
     font-weight: bold;
     line-height: 1.25;
     margin: 4px 0;
@@ -351,12 +360,12 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 8px;
-    font-size: 16px;
+    font-size: var(--font-size-subtitle);
 }
 
 .skill-icon {
     font-weight: bold;
-    font-size: 14px;
+    font-size: var(--font-size-subtitle);
 }
 
 .skill-text strong {
@@ -385,7 +394,7 @@ body {
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
-    font-size: 14px;
+    font-size: var(--font-size-subtitle);
     box-shadow: 0 4px 12px rgba(0, 10, 50, 0.4);
 }
 
@@ -405,7 +414,7 @@ body {
 }
 
 .user-score {
-    font-size: 16px;
+    font-size: var(--font-size-subtitle);
     color: var(--color-primary);
 }
 
@@ -422,10 +431,14 @@ body {
 }
 
 .title-estaciones {
-    font-size: 16px);
+    font-size: var(--font-size-head);
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+
+    text-align: center;
+    text-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
+    color: var(--color-text-light);
 }
 
 .text-primary {
@@ -433,7 +446,7 @@ body {
 }
 
 .subtitle-estaciones {
-    font-size: 16px;
+    font-size: var(--font-size-subtitle);
     margin-top: 2px;
     color: var(--color-text-light);
 }
@@ -489,13 +502,13 @@ body {
 
 
 .station-label {
-    font-size: 14px;
+    font-size: var(--font-size-subtitle);
     color: var(--color-cyan-glow);
     font-weight: 700;
 }
 
 .station-name {
-    font-size: 16px;
+    font-size: var(--font-size-title);
     color: var(--color-text-light);
     font-weight: 700;
     line-height: 1.1;
@@ -534,15 +547,23 @@ body {
 }
 
 .title-trivia {
-    font-size: 16px;
+    font-size: var(--font-size-head);
     font-weight: 900;
     text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    text-align: center;
+    text-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
+    color: var(--color-text-light);
 }
 
 .subtitle-trivia {
-    font-size: clamp(20px, 2.8vh, 24px);
+    font-size: var(--font-size-subtitle);
     font-weight: bold;
     color: var(--color-text-light);
+    
+    text-align: center;
 }
 
 .progress-bar {
@@ -567,8 +588,8 @@ body {
 }
 
 .step-circle {
-    width: 22px;
-    height: 22px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     background-color: rgba(0, 30, 110, 0.8);
     color: var(--color-text-muted);
@@ -576,12 +597,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: var(--font-size-subtitle);
     font-weight: bold;
 }
 
 .step-label {
-    font-size: 12px;
+    font-size: var(--font-size-subtitle);
     color: var(--color-text-muted);
     text-transform: uppercase;
     font-weight: bold;
@@ -613,14 +634,14 @@ body {
 }
 
 .stage-title {
-    font-size: 14px;
+    font-size: var(--font-size-title);
     font-weight: 900;
     margin-bottom: 4px;
     color: var(--color-cyan-glow);
 }
 
 .question-text {
-    font-size: 14px;
+    font-size: var(--font-size-subtitle);
     font-weight: bold;
     line-height: 1.35;
 }
@@ -659,8 +680,8 @@ body {
     position: absolute;
     top: 6px;
     left: 6px;
-    width: 22px;
-    height: 22px;
+    width: 25px;
+    height: 25px;
     background-color: #001A80;
     color: var(--color-text-light);
     border: 1px solid var(--color-cyan-glow);
@@ -669,7 +690,7 @@ body {
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: 12px;
+    font-size: var(--font-size-subtitle);
 }
 
 .opt-letter.correct-icon {
@@ -684,7 +705,7 @@ body {
 
 .opt-text {
     padding: 6px 8px;
-    font-size: 14px;
+    font-size: var(--font-size-subtitle);
     font-weight: bold;
     text-align: left;
     display: flex;
@@ -705,7 +726,7 @@ body {
     width: 100%;
     font-family: var(--font-main);
     font-weight: 700;
-    font-size: 16px;
+    font-size: var(--font-size-subtitle);
     cursor: not-allowed;
     flex-shrink: 0;
 }
@@ -747,14 +768,20 @@ body {
 
 .title-feedback {
     color: var(--color-cyan-glow);
-    font-size: clamp(24px, 3.8vh, 28px);
+    font-size: var(--font-size-head);
     font-weight: 900;
     text-shadow: 0 0 15px rgba(0, 210, 255, 0.7);
     margin-bottom: 4px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    text-align: center;
 }
 
 .subtitle-feedback {
-    font-size: 16px;
+    font-size: var(--font-size-subtitle);
     font-weight: bold;
     color: var(--color-text-light);
     margin-bottom: clamp(20px, 4vh, 35px);
@@ -793,7 +820,7 @@ body {
     border: 2px solid var(--color-cyan-glow);
     padding: 8px 25px;
     border-radius: 30px;
-    font-size: 20px;
+    font-size: var(--font-size-head);
     font-weight: 900;
     color: var(--color-primary);
     box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
@@ -869,16 +896,48 @@ body {
     100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
 }
 
-.slide-in-bottom { animation: slideInBottom 0.5s ease-out forwards; }
-.slide-in-bottom-delayed { opacity: 0; animation: slideInBottom 0.5s ease-out 0.4s forwards; }
-.slide-in-right { opacity: 0; animation: slideInRight 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; }
-.bounce-in-top { opacity: 0; animation: bounceInTop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-.pop-in { opacity: 0; transform: scale(0.8); animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s forwards; }
-.pulse-btn { animation: pulseGlow 2s infinite; }
-.pulse-once { animation: scalePulse 0.4s ease-out; }
-.btn-gold-glow { box-shadow: 0 0 25px rgba(255, 184, 28, 0.9); animation: pulseGlow 1s infinite; }
+.slide-in-bottom { 
+    animation: slideInBottom 0.5s ease-out forwards; 
+}
 
-.shake { animation: shakeAnim 0.5s cubic-bezier(.36,.07,.19,.97) both; border-color: var(--color-danger) !important; }
+.slide-in-bottom-delayed { 
+    opacity: 0; 
+    animation: slideInBottom 0.5s ease-out 0.4s forwards; 
+}
+
+.slide-in-right { 
+    opacity: 0; 
+    animation: slideInRight 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; 
+}
+
+.bounce-in-top { 
+    opacity: 0; 
+    animation: bounceInTop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
+}
+
+.pop-in { 
+    opacity: 0; 
+    transform: scale(0.8); 
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s forwards; 
+}
+
+.pulse-btn { 
+    animation: pulseGlow 2s infinite; 
+}
+
+.pulse-once { 
+    animation: scalePulse 0.4s ease-out; 
+}
+
+.btn-gold-glow { 
+    box-shadow: 0 0 25px rgba(255, 184, 28, 0.9); 
+    animation: pulseGlow 1s infinite; 
+}
+
+.shake { 
+    animation: shakeAnim 0.5s cubic-bezier(.36,.07,.19,.97) both; 
+    border-color: var(--color-danger) !important; 
+}
 
 @keyframes slideInBottom { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 @keyframes slideInRight { from { transform: translateX(50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
@@ -888,8 +947,16 @@ body {
 @keyframes scalePulse { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
 @keyframes shakeAnim { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
 
-.congratulation-card { margin-top: auto; margin-bottom: auto; }
-.trophy-icon { font-size: 55px; text-align: center; margin-bottom: 10px; }
+.congratulation-card { 
+    margin-top: auto; 
+    margin-bottom: auto; 
+}
+
+.trophy-icon { 
+    font-size: 40px; 
+    text-align: center; 
+    margin-bottom: 10px; 
+}
 
 /* --- INDICADOR PULL-TO-REFRESH --- */
 .ptr-indicator {
@@ -909,4 +976,6 @@ body {
     box-shadow: 0 4px 15px rgba(0, 210, 255, 0.5);
 }
 
-.ptr-icon { font-size: 16px; }
+.ptr-icon { 
+    font-size: var(--font-size-subtitle);
+ }
