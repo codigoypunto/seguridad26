@@ -10,19 +10,20 @@ export const Station1 = () => {
         questions: [
             { 
                 step: 1, 
-                stepName: "EXCAVACIÓN", 
-                stageTitle: "PREGUNTA 1: ZANJAS Y TALUDES", 
-                text: "¿Qué condición en esta excavación representa un riesgo inminente de atrapamiento?", 
+                stepName: "EXCAVACIÓN",
+                reflection: "El material acumulado cerca del borde aumenta la carga sobre las paredes de la excavación y puede provocar derrumbes.",
+                stageTitle: "PREGUNTA 1: EXCAVACIONES", 
+                text: "Observas una excavación profunda con personal trabajando en su interior. ¿Qué condición representa el mayor riesgo de atrapamiento?", 
                 options: [ 
                     { 
                         id: 'A', 
-                        text: "Zanja profunda sin entibar ni banquetas", 
+                        text: "Material excavado acumulado al borde de la zanja", 
                         img: "https://images.pexels.com/photos/2892618/pexels-photo-2892618.jpeg?auto=compress&cs=tinysrgb&w=300", 
-                        isCorrect: true 
+                        isCorrect: true,
                     }, 
                     { 
                         id: 'B', 
-                        text: "Zona delimitada", 
+                        text: "Área delimitada con cinta de seguridad", 
                         img: "https://images.pexels.com/photos/10365313/pexels-photo-10365313.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: false 
                     }, 
@@ -34,39 +35,40 @@ export const Station1 = () => {
                     }, 
                     { 
                         id: 'D', 
-                        text: "Material alejado", 
+                        text: "Escalera de acceso instalada", 
                         img: "https://images.pexels.com/photos/2260783/pexels-photo-2260783.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: false 
-                    } 
-                ] 
+                    }
+                ]
             },
             { 
                 step: 2, 
-                stepName: "ALTURA", 
+                stepName: "ALTURA",
+                reflection: "Una caída puede ocurrir en segundos. La protección contra caídas debe mantenerse conectada en todo momento.",
                 stageTitle: "PREGUNTA 2: TRABAJOS EN ALTURA", 
-                text: "Estás inspeccionando un trabajo a 3 metros de altura. ¿Qué acción es una falta crítica?", 
+                text: "En un trabajo a más de 1.8 metros de altura. ¿Cuál constituye una condición crítica de riesgo?", 
                 options: [ 
                     { 
                         id: 'A', 
-                        text: "Uso de andamios", 
+                        text: "Andamio inspeccionado y señalizado", 
                         img: "https://images.pexels.com/photos/12188448/pexels-photo-12188448.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'B', 
-                        text: "Trabajador sin engancharse", 
+                        text: "Trabajador sin estar conectado a un punto de anclaje", 
                         img: "https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: true 
                     }, 
                     { 
                         id: 'C', 
-                        text: "Línea de vida tensa", 
+                        text: "Línea de vida certificada", 
                         img: "https://images.pexels.com/photos/2260783/pexels-photo-2260783.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'D', 
-                        text: "Rodapiés instalados", 
+                        text: "Plataforma con rodapiés", 
                         img: "https://images.pexels.com/photos/2892618/pexels-photo-2892618.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: false 
                     } 
@@ -74,31 +76,32 @@ export const Station1 = () => {
             },
             { 
                 step: 3, 
-                stepName: "P. CIEGO", 
+                stepName: "PUNTO CIEGO",
+                reflection: "Los puntos ciegos son una de las principales causas de atropellos y colisiones en operaciones mineras.",
                 stageTitle: "PREGUNTA 3: EQUIPO PESADO", 
-                text: "¿Cuál es el principal riesgo al interactuar con equipo pesado en movimiento?", 
+                text: "¿Un camión de acarreo se encuentra maniobrando, un trabajador cruza frente al equipo. ¿Qué condición representa el mayor riesgo?", 
                 options: [ 
                     { 
                         id: 'A', 
-                        text: "Uso de radio", 
+                        text: "Uso de radio de comunicación", 
                         img: "https://images.pexels.com/photos/12386445/pexels-photo-12386445.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'B', 
-                        text: "Caminar por el punto ciego", 
+                        text: "Ingreso al punto ciego del operador", 
                         img: "https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: true 
                     }, 
                     { 
                         id: 'C', 
-                        text: "Distancia segura", 
+                        text: "Mantener distancia segura", 
                         img: "https://images.pexels.com/photos/10365313/pexels-photo-10365313.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'D', 
-                        text: "Contacto visual", 
+                        text: "Establecer contacto visual con el operador", 
                         img: "https://images.pexels.com/photos/2892618/pexels-photo-2892618.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: false 
                     } 
@@ -106,31 +109,32 @@ export const Station1 = () => {
             },
             { 
                 step: 4, 
-                stepName: "HERRAMIENTA", 
-                stageTitle: "PREGUNTA 4: HERRAMIENTAS", 
-                text: "Al inspeccionar herramientas manuales, ¿qué detectas como riesgo inaceptable?", 
+                stepName: "HERRAMIENTA",
+                reflection: "Las herramientas hechizas carecen de diseño, certificación y controles que garanticen su uso seguro.",
+                stageTitle: "PREGUNTA 4: HERRAMIENTAS MANUALES", 
+                text: "Durante una inspección detectas varias herramientas en uso. ¿Cuál de ellas representa una condición insegura de alto riesgo?", 
                 options: [ 
                     { 
                         id: 'A', 
-                        text: "Herramientas hechizas", 
+                        text: "Herramienta hechiza o modificada sin autorización", 
                         img: "https://images.pexels.com/photos/2260783/pexels-photo-2260783.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: true 
                     }, 
                     { 
                         id: 'B', 
-                        text: "Cinta del mes", 
+                        text: "Herramienta con inspección vigente", 
                         img: "https://images.pexels.com/photos/12188448/pexels-photo-12188448.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'C', 
-                        text: "Guardas instaladas", 
+                        text: "Herramienta con guarda instalada", 
                         img: "https://images.pexels.com/photos/2892618/pexels-photo-2892618.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'D', 
-                        text: "Mangos ergonómicos", 
+                        text: "Herramienta con mango ergonómico", 
                         img: "https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: false 
                     } 

@@ -7,15 +7,15 @@ export const EstacionesView = () => {
         { id: 1, name: "Percepción de Riesgo" },
         { id: 2, name: "Fatiga y Somnolencia" },
         { id: 3, name: "Caída de Rocas" },
-        { id: 4, name: "Manos y Dedos" },
+        { id: 4, name: "Cuidado de Manos y Dedos" },
         { id: 5, name: "Aislamiento de Energía" },
         { id: 6, name: "Seguridad Vial" },
-        { id: 7, name: "Tema por Definir 1" },
-        { id: 8, name: "Tema por Definir 2" },
-        { id: 9, name: "Tema por Definir 3" },
-        { id: 10, name: "Tema por Definir 4" },
-        { id: 11, name: "Tema por Definir 5" },
-        { id: 12, name: "Tema por Definir 6" }
+        { id: 7, name: "Tema por Definir" },
+        { id: 8, name: "Tema por Definir" },
+        { id: 9, name: "Tema por Definir" },
+        { id: 10, name: "Tema por Definir" },
+        { id: 11, name: "Tema por Definir" },
+        { id: 12, name: "Tema por Definir" }
     ];
 
     // SVG de Estrella optimizado
