@@ -10,8 +10,8 @@ import { navigate } from '../../core/router.js';
 const CONFIG = {
     TOTAL_TIME_SEC: 10.0,       // Tiempo de juego en segundos
     INITIAL_ENERGY: 100.0,      // Energía inicial (100%)
-    DECAY_RATE_PER_SEC: 40.0,   // Pérdida automática de alerta por segundo
-    TAP_BOOST: 6.5,             // Alerta sumada por cada tap/click en la imagen
+    DECAY_RATE_PER_SEC: 35.0,   // Pérdida automática de alerta por segundo
+    TAP_BOOST: 5.5,             // Alerta sumada por cada tap/click en la imagen
     TICK_INTERVAL_MS: 50,       // Intervalo de actualización de física (ms)
 };
 
@@ -103,7 +103,7 @@ export const Station2 = () => {
 
                 <!-- Estado del Conductor -->
                 <div id="statusMessage" style="font-size: 14px; font-weight: 900; color: var(--color-text-light); min-height: 20px; text-transform: uppercase; letter-spacing: 0.5px;">
-                    MANTÉN DESPIERTO AL CONDUCTOR
+                    TOCA LA IMAGEN PARA MANTENER DESPIERTO AL CONDUCTOR
                 </div>
 
                 <!-- Barra de Alerta -->
