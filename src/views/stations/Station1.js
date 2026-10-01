@@ -1,10 +1,11 @@
 /**
- * Módulo de Estación 1: Percepción de Riesgo (Trivia)
+ * Módulo de Estación 1: Percepción de Riesgo (Trivia con Reflexiones)
  */
 import { TriviaEngine } from './TriviaEngine.js';
 
 export const Station1 = () => {
     const data = {
+        stationId: 1,
         title: "PERCEPCIÓN DE RIESGO", 
         subtitle: "Identifica la condición subestándar",
         questions: [

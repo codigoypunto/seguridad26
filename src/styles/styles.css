@@ -193,7 +193,7 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Botones con Acento Dorado Brilante (ejpaletaSecundaria / CTA Principal) */
+/* Botones con Acento Dorado Brillante */
 .btn-primary {
     background: linear-gradient(180deg, #FFD000 0%, #E59400 100%);
     color: #000C38;
@@ -333,7 +333,6 @@ body {
     align-self: flex-start;
     font-size: var(--font-size-head);
     box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
-
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
@@ -461,7 +460,7 @@ body {
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-right: 10px; /* Margen para dar espacio a la barra de scroll */
+    padding-right: 10px;
 }
 
 /* Personalización de la Barra de Scroll Neón */
@@ -495,7 +494,7 @@ body {
     backdrop-filter: blur(8px);
     text-align: left;
     box-shadow: 0 4px 12px rgba(0, 10, 50, 0.4);
-    flex-shrink: 0; /* Evita compresión en el scroll */
+    flex-shrink: 0;
     width: 100%;
     min-height: 78px;
 }
@@ -538,12 +537,6 @@ body {
     width: 100%;
 }
 
-/* .star-icon {
-    width: 16px;
-    height: 16px;
-    transition: fill 0.3s ease;
-} */
-
 .star-icon {
     width: var(--font-size-head);
     height: var(--font-size-head);
@@ -559,11 +552,13 @@ body {
     color: rgba(0, 140, 255, 0.3);
 }
 
-/* --- VISTA TRIVIA --- */
+/* ==========================================================================
+   VISTA TRIVIA (NUEVO PASO ACTIVO ÚNICO Y LLAMADA DE REFLEXIÓN)
+   ========================================================================== */
 .trivia-header {
-    text-align: left;
+    text-align: center;
     width: 100%;
-    margin-bottom: clamp(6px, 1.2vh, 12px);
+    margin-bottom: clamp(6px, 1vh, 10px);
     flex-shrink: 0;
 }
 
@@ -584,70 +579,48 @@ body {
     text-align: center;
 }
 
-.progress-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+/* Tarjeta contenedora de Paso Único Activo (Referencia visual) */
+.active-step-card {
     width: 100%;
     background: var(--color-bg-card);
-    border: 1.5px solid rgba(0, 210, 255, 0.3);
-    padding: 6px 12px;
+    border: 1.5px solid var(--color-cyan-subtle);
     border-radius: var(--border-radius-md);
-    margin-bottom: clamp(8px, 1.5vh, 15px);
-    flex-shrink: 0;
-}
-
-.progress-step {
+    padding: 8px 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
-    z-index: 2;
+    justify-content: center;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 15px rgba(0, 10, 50, 0.5);
+    flex-shrink: 0;
 }
 
-.step-circle {
-    width: 25px;
-    height: 25px;
+.step-number-badge {
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
-    background-color: rgba(0, 30, 110, 0.8);
-    color: var(--color-text-muted);
-    border: 1px solid rgba(0, 180, 255, 0.3);
+    background-color: var(--color-primary);
+    color: #000C38;
+    font-weight: 900;
+    font-size: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--font-size-subtitle);
-    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255, 184, 28, 0.6);
 }
 
-.step-label {
-    font-size: var(--font-size-subtitle);
-    color: var(--color-text-muted);
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.progress-step.active .step-circle {
-    background-color: var(--color-primary);
-    color: #000C38;
-    box-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
-    border-color: #FFFFFF;
-}
-
-.progress-step.active .step-label {
+.step-name-text {
+    font-size: 15px;
+    font-weight: 800;
     color: var(--color-primary);
-}
-
-.progress-line {
-    flex-grow: 1;
-    height: 2px;
-    background-color: rgba(0, 180, 255, 0.3);
-    margin: 0 4px;
-    transform: translateY(-6px);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 3px;
 }
 
 .question-container {
     text-align: center;
-    margin-bottom: clamp(6px, 1.2vh, 15px);
+    margin-bottom: clamp(6px, 1vh, 12px);
     flex-shrink: 0;
 }
 
@@ -656,12 +629,13 @@ body {
     font-weight: 900;
     margin-bottom: 4px;
     color: var(--color-cyan-glow);
+    text-transform: uppercase;
 }
 
 .question-text {
     font-size: var(--font-size-subtitle);
     font-weight: bold;
-    line-height: 1.35;
+    line-height: 1.3;
 }
 
 .options-grid {
@@ -672,7 +646,7 @@ body {
     width: 100%;
     flex: 1;
     min-height: 0;
-    margin-bottom: clamp(8px, 1.5vh, 15px);
+    margin-bottom: 10px;
 }
 
 .option-card {
@@ -714,11 +688,13 @@ body {
 .opt-letter.correct-icon {
     background-color: var(--color-success);
     border-color: var(--color-success);
+    color: #000C38;
 }
 
 .opt-letter.incorrect-icon {
     background-color: var(--color-danger);
     border-color: var(--color-danger);
+    color: #FFFFFF;
 }
 
 .opt-text {
@@ -734,6 +710,39 @@ body {
 .option-card.selected { border-color: var(--color-cyan-glow); box-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
 .option-card.correct { border-color: var(--color-success); background-color: rgba(0, 230, 118, 0.15); }
 .option-card.incorrect { border-color: var(--color-danger); background-color: rgba(255, 42, 85, 0.15); opacity: 0.7; }
+
+/* Caja de Llamada de Reflexión (Estilo Casual Mobile Game) */
+.reflection-box {
+    width: 100%;
+    background: rgba(0, 25, 90, 0.88);
+    border: 1.5px solid var(--color-cyan-glow);
+    border-radius: var(--border-radius-md);
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.35);
+    backdrop-filter: blur(8px);
+    text-align: left;
+    flex-shrink: 0;
+}
+
+.reflection-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.reflection-text {
+    font-size: 13px;
+    color: var(--color-text-light);
+    line-height: 1.35;
+    font-weight: 400;
+}
 
 .btn-disabled {
     background: rgba(0, 30, 100, 0.5);

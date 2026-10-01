@@ -1,115 +1,155 @@
-import { store, updateProgress } from '../../core/store.js';
+/**
+ * Motor Reutilizable de Trivias con Soporte de Paso Activo Único y Reflexión
+ */
+import { updateProgress } from '../../core/store.js';
 import { navigate } from '../../core/router.js';
 
-export const TriviaEngine = (triviaData) => {
-    let state = {
-        questionIndex: 0,
-        selectedOptionId: null,
-        hasVerified: false,
-        score: 0
-    };
-
-    const generateHTML = () => {
-        const currentQ = triviaData.questions[state.questionIndex];
-        
-        let progressHTML = `<div class="progress-bar">`;
-        triviaData.questions.forEach((q, idx) => {
-            const isActive = idx === state.questionIndex;
-            const isPast = idx < state.questionIndex;
-            progressHTML += `
-                <div class="progress-step ${isActive ? 'active' : ''} ${isPast ? 'past' : ''}">
-                    <div class="step-circle">${q.step}</div>
-                    <div class="step-label">${q.stepName}</div>
-                </div>
-                ${idx < triviaData.questions.length - 1 ? '<div class="progress-line"></div>' : ''}
-            `;
-        });
-        progressHTML += `</div>`;
-
-        let optionsHTML = currentQ.options.map(opt => {
-            let cardClasses = 'option-card';
-            let iconHTML = `<div class="opt-letter">${opt.id}</div>`;
-
-            if (state.hasVerified) {
-                if (opt.isCorrect) {
-                    cardClasses += ' correct';
-                    iconHTML = `<div class="opt-letter correct-icon">✓</div>`;
-                } else if (state.selectedOptionId === opt.id) {
-                    cardClasses += ' incorrect';
-                    iconHTML = `<div class="opt-letter incorrect-icon">✗</div>`;
-                }
-            } else if (state.selectedOptionId === opt.id) {
-                cardClasses += ' selected';
-            }
-
-            return `
-                <div class="${cardClasses}" data-id="${opt.id}">
-                    <div class="opt-image" style="background-image: url('${opt.img}')">${iconHTML}</div>
-                    <div class="opt-text">${opt.text}</div>
-                </div>
-            `;
-        }).join('');
-
-        let btnText = state.hasVerified ? "CONTINUAR" : "VERIFICAR";
-        let btnClass = state.selectedOptionId ? "btn-primary pulse-once" : "btn-disabled";
-
-        return `
-            <div class="brand-header">
-                <img src="src/images/logoAngloamerica_bn.svg" alt="Anglo American" class="logo-anglo">
-            </div>
-            <div class="trivia-header pop-in">
-                <h2 class="title-trivia">${triviaData.title}</h2>
-                <p class="subtitle-trivia">${triviaData.subtitle}</p>
-            </div>
-            ${progressHTML}
-            <div class="question-container slide-in-bottom">
-                <h3 class="stage-title text-primary">${currentQ.stageTitle}</h3>
-                <p class="question-text">${currentQ.text}</p>
-            </div>
-            <div class="options-grid fade-in">${optionsHTML}</div>
-            <button id="actionBtn" class="${btnClass}" ${!state.selectedOptionId && !state.hasVerified ? 'disabled' : ''}>${btnText}</button>
-        `;
-    };
+export const TriviaEngine = (data) => {
+    let currentIndex = 0;
+    let selectedOption = null;
+    let isVerified = false;
+    let score = 0;
 
     const render = async () => {
+        const currentQ = data.questions[currentIndex];
         const fragment = document.createDocumentFragment();
         const container = document.createElement('div');
         container.className = 'view-container station-engine-view slide-in-right';
-        container.id = 'stationContainer';
-        container.innerHTML = generateHTML();
+        container.id = 'triviaContainer';
+
+        container.innerHTML = `
+            <div class="brand-header">
+                <img src="src/images/logoAngloamerica_bn.svg" alt="Anglo American" class="logo-anglo">
+            </div>
+
+            <div class="trivia-header pop-in">
+                <h2 class="title-trivia">${data.title}</h2>
+                <p class="subtitle-trivia">${data.subtitle}</p>
+            </div>
+
+            <!-- Paso Único Activo (Nuevo Diseño según referencia) -->
+            <div class="active-step-card pop-in">
+                <div class="step-number-badge">${currentQ.step}</div>
+                <div class="step-name-text">${currentQ.stepName}</div>
+            </div>
+
+            <!-- Pregunta -->
+            <div class="question-container">
+                <h3 class="stage-title">${currentQ.stageTitle}</h3>
+                <p class="question-text">${currentQ.text}</p>
+            </div>
+
+            <!-- Cuadrícula de Opciones -->
+            <div class="options-grid">
+                ${currentQ.options.map(opt => `
+                    <div class="option-card" data-id="${opt.id}">
+                        <div class="opt-image" style="background-image: url('${opt.img}');">
+                            <span class="opt-letter" id="letter-${opt.id}">${opt.id}</span>
+                        </div>
+                        <div class="opt-text">${opt.text}</div>
+                    </div>
+                `).join('')}
+            </div>
+
+            <!-- Contenedor dinámico de Reflexión (Se llena al verificar) -->
+            <div id="reflectionContainer" style="width: 100%;"></div>
+
+            <!-- Botón de Acción Principal -->
+            <button id="actionBtn" class="btn-disabled" disabled>
+                VERIFICAR
+            </button>
+        `;
+
         fragment.appendChild(container);
         return fragment;
     };
 
     const afterRender = () => {
-        const container = document.getElementById('stationContainer');
-        if (!container) return;
+        const currentQ = data.questions[currentIndex];
+        const optionCards = document.querySelectorAll('.option-card');
+        const actionBtn = document.getElementById('actionBtn');
+        const reflectionContainer = document.getElementById('reflectionContainer');
 
-        container.addEventListener('click', (e) => {
-            const card = e.target.closest('.option-card');
-            if (card && !state.hasVerified) {
-                state.selectedOptionId = card.getAttribute('data-id');
-                container.innerHTML = generateHTML(); 
-            }
+        // Selección de Opción
+        optionCards.forEach(card => {
+            card.addEventListener('click', () => {
+                if (isVerified) return; // Bloqueado tras verificar
 
-            const btn = e.target.closest('#actionBtn');
-            if (btn && !btn.disabled) {
-                if (!state.hasVerified) {
-                    const currentQ = triviaData.questions[state.questionIndex];
-                    const selected = currentQ.options.find(o => o.id === state.selectedOptionId);
-                    if (selected.isCorrect) state.score++;
-                    state.hasVerified = true;
-                    container.innerHTML = generateHTML();
-                } else {
-                    if (state.questionIndex < triviaData.questions.length - 1) {
-                        state.questionIndex++;
-                        state.selectedOptionId = null;
-                        state.hasVerified = false;
-                        container.innerHTML = generateHTML();
-                    } else {
-                        updateProgress(store.currentStation, state.score);
-                        navigate('/estrellas'); 
+                const id = card.getAttribute('data-id');
+                selectedOption = currentQ.options.find(o => o.id === id);
+
+                optionCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+
+                actionBtn.className = 'btn-primary pulse-btn';
+                actionBtn.disabled = false;
+                actionBtn.innerText = 'VERIFICAR';
+            });
+        });
+
+        // Evento Botón de Acción (VERIFICAR -> CONTINUAR)
+        actionBtn.addEventListener('click', () => {
+            if (!selectedOption) return;
+
+            if (!isVerified) {
+                // FASE 1: VERIFICAR RESPUESTA
+                isVerified = true;
+
+                if (selectedOption.isCorrect) {
+                    score++;
+                }
+
+                // Resaltar respuesta correcta/incorrecta e íconos
+                optionCards.forEach(card => {
+                    const id = card.getAttribute('data-id');
+                    const opt = currentQ.options.find(o => o.id === id);
+                    const letterSpan = document.getElementById(`letter-${id}`);
+
+                    if (opt.isCorrect) {
+                        card.classList.add('correct');
+                        letterSpan.className = 'opt-letter correct-icon';
+                        letterSpan.innerText = '✓';
+                    } else if (id === selectedOption.id && !opt.isCorrect) {
+                        card.classList.add('incorrect');
+                        letterSpan.className = 'opt-letter incorrect-icon';
+                        letterSpan.innerText = '✕';
                     }
+                });
+
+                // Mostrar llamada de reflexión
+                if (currentQ.reflection) {
+                    reflectionContainer.innerHTML = `
+                        <div class="reflection-box pop-in">
+                            <div class="reflection-title">💡 REFLEXIÓN BR@VA</div>
+                            <p class="reflection-text">${currentQ.reflection}</p>
+                        </div>
+                    `;
+                }
+
+                // Transformar botón a CONTINUAR
+                actionBtn.innerText = 'CONTINUAR';
+                actionBtn.className = 'btn-primary pulse-btn btn-gold-glow';
+
+            } else {
+                // FASE 2: CONTINUAR A SIGUIENTE PREGUNTA O PUNTUACIÓN
+                currentIndex++;
+                selectedOption = null;
+                isVerified = false;
+
+                if (currentIndex < data.questions.length) {
+                    // Re-renderizar siguiente pregunta de la trivia
+                    const triviaContainer = document.getElementById('triviaContainer');
+                    if (triviaContainer) {
+                        render().then(newFrag => {
+                            triviaContainer.parentNode.replaceChild(newFrag, triviaContainer);
+                            afterRender();
+                        });
+                    }
+                } else {
+                    // Finalizar Estación y guardar progreso
+                    const stationId = data.stationId || 1;
+                    updateProgress(stationId, score);
+                    navigate('/estrellas');
                 }
             }
         });
