@@ -80,7 +80,7 @@ export const Station2 = () => {
                 <!-- Encabezado con Temporizador -->
                 <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: rgba(0, 25, 90, 0.6); padding: 8px 14px; border-radius: var(--border-radius-md); border: 1.5px solid var(--color-cyan-glow);">
                     <span style="font-weight: 800; font-size: 13px; color: var(--color-cyan-glow); letter-spacing: 0.5px;">NIVEL DE ALERTA</span>
-                    <span id="timerDisplay" style="font-weight: 900; font-size: 18px; color: var(--color-primary);">⏱️ 10.0s</span>
+                    <span id="timerDisplay" style="font-weight: 900; font-size: 18px; color: var(--color-primary);">⏱️ ${timeRemaining}s </span>
                 </div>
 
                 <!-- Marco de Cámara del Conductor -->
