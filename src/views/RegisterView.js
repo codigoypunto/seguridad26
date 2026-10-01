@@ -13,8 +13,6 @@ export const RegisterView = () => {
                 <img src="src/images/logoAngloamerica_bn.svg" alt="Anglo American" class="logo-anglo">
             </div>
 
-            // hola version
-
             <p style="color: white; font-size: 10px; text-align: right; position: absolute; top: 10px; right: 10px;">v003</p>
             
             <div class="campaign-logo">
