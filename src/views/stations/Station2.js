@@ -8,7 +8,7 @@ import { navigate } from '../../core/router.js';
 // PARÁMETROS CONFIGURABLES
 // ==========================================================================
 const CONFIG = {
-    TOTAL_TIME_SEC: 10.0,       // Tiempo de juego en segundos
+    TOTAL_TIME_SEC: 20.0,       // Tiempo de juego en segundos
     INITIAL_ENERGY: 100.0,      // Energía inicial (100%)
     DECAY_RATE_PER_SEC: 35.0,   // Pérdida automática de alerta por segundo
     TAP_BOOST: 5.5,             // Alerta sumada por cada tap/click en la imagen
