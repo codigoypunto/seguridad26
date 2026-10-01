@@ -10,7 +10,7 @@ import { navigate } from '../../core/router.js';
 const CONFIG = {
     TOTAL_TIME_SEC: 10.0,       // Tiempo de juego en segundos
     INITIAL_ENERGY: 100.0,      // Energía inicial (100%)
-    DECAY_RATE_PER_SEC: 30.0,   // Pérdida automática de alerta por segundo
+    DECAY_RATE_PER_SEC: 40.0,   // Pérdida automática de alerta por segundo
     TAP_BOOST: 6.5,             // Alerta sumada por cada tap/click en la imagen
     TICK_INTERVAL_MS: 50,       // Intervalo de actualización de física (ms)
 };

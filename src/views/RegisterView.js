@@ -15,7 +15,7 @@ export const RegisterView = () => {
 
             // hola version
 
-            <p style="color: white; font-size: 10px; text-align: right; position: absolute; top: 10px; right: 10px;">v002</p>
+            <p style="color: white; font-size: 10px; text-align: right; position: absolute; top: 10px; right: 10px;">v003</p>
             
             <div class="campaign-logo">
                 <img src="src/images/LogoBravos.png" alt="Los Brav@s de la Seguridad">
