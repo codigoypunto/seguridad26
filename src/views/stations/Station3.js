@@ -5,6 +5,7 @@ import { TriviaEngine } from './TriviaEngine.js';
 
 export const Station3 = () => {
     const data = {
+        stationId: 3,
         title: "CAÍDA DE ROCAS",
         subtitle: "Resuelve la trivia Br@va",
         questions: [
@@ -17,25 +18,25 @@ export const Station3 = () => {
                     { 
                         id: 'A', 
                         text: "Roca suelta en talud", 
-                        img: "src/images/31a.jpeg", 
+                        img: "src/images/est3/31a.jpg", 
                         isCorrect: true 
                     }, 
                     { 
                         id: 'B', 
                         text: "Techo estable", 
-                        img: "src/images/31b.jpeg", 
+                        img: "src/images/est3/31b.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'C', 
                         text: "Señalización", 
-                        img: "src/images/31c.jpeg", 
+                        img: "src/images/est3/31c.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'D', 
                         text: "Talud estable", 
-                        img: "src/images/31d.jpeg", 
+                        img: "src/images/est3/31d.jpg", 
                         isCorrect: false 
                     } 
                 ] 
@@ -49,25 +50,25 @@ export const Station3 = () => {
                     { 
                         id: 'A', 
                         text: "Acercarse", 
-                        img: "src/images/32a.jpeg", 
+                        img: "src/images/est3/32a.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'B', 
                         text: "Detener el trabajo y retirarse", 
-                        img: "src/images/32b.jpeg", 
+                        img: "src/images/est3/32b.jpg", 
                         isCorrect: true 
                     }, 
                     { 
                         id: 'C', 
                         text: "Ignorarlo", 
-                        img: "src/images/32c.jpeg", 
+                        img: "src/images/est3/32c.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'D', 
                         text: "Tomar foto", 
-                        img: "src/images/32d.jpeg", 
+                        img: "src/images/est3/32d.jpg", 
                         isCorrect: false 
                     } 
                 ] 
@@ -81,25 +82,25 @@ export const Station3 = () => {
                     { 
                         id: 'A', 
                         text: "Lentes", 
-                        img: "src/images/33a.jpeg", 
+                        img: "src/images/est3/33a.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'B', 
                         text: "Casco en buen estado", 
-                        img: "src/images/33b.jpeg", 
+                        img: "src/images/est3/33b.jpg", 
                         isCorrect: true 
                     }, 
                     { 
                         id: 'C', 
                         text: "Ropa reflectiva", 
-                        img: "src/images/33c.jpeg", 
+                        img: "src/images/est3/33c.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'D', 
                         text: "Guantes", 
-                        img: "src/images/33d.jpeg", 
+                        img: "src/images/est3/33d.jpg", 
                         isCorrect: false 
                     } 
                 ] 
@@ -113,25 +114,25 @@ export const Station3 = () => {
                     { 
                         id: 'A', 
                         text: "Reanudar labor", 
-                        img: "src/images/34a.jpeg", 
+                        img: "src/images/est3/34a.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'B', 
                         text: "Esperar 5 min", 
-                        img: "src/images/34b.jpeg", 
+                        img: "src/images/est3/34b.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'C', 
                         text: "Evaluación geotécnica previa", 
-                        img: "src/images/34c.jpeg", 
+                        img: "src/images/est3/34c.jpg", 
                         isCorrect: true 
                     }, 
                     { 
                         id: 'D', 
                         text: "Buscar equipo", 
-                        img: "src/images/34d.jpeg", 
+                        img: "src/images/est3/34d.jpg", 
                         isCorrect: false 
                     } 
                 ] 
