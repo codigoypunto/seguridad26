@@ -10,11 +10,11 @@ export const Station1 = () => {
         subtitle: "Identifica la condición subestándar",
         questions: [
             { 
-                step: 1, 
+                step: 1,
                 stepName: "EXCAVACIÓN",
                 reflection: "El material acumulado cerca del borde aumenta la carga sobre las paredes de la excavación y puede provocar derrumbes.",
                 stageTitle: "PREGUNTA 1: EXCAVACIONES", 
-                text: "Observas una excavación profunda con personal trabajando en su interior. ¿Qué condición representa el mayor riesgo de atrapamiento?", 
+                text: "En una excavación profunda con personal trabajando en su interior. ¿Qué condición representa el mayor riesgo de atrapamiento?", 
                 options: [ 
                     { 
                         id: 'A', 
@@ -57,7 +57,7 @@ export const Station1 = () => {
                     }, 
                     { 
                         id: 'B', 
-                        text: "Trabajador sin estar conectado a un punto de anclaje", 
+                        text: "No estar conectado a un punto de anclaje", 
                         img: "https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: true 
                     }, 
@@ -80,7 +80,7 @@ export const Station1 = () => {
                 stepName: "PUNTO CIEGO",
                 reflection: "Los puntos ciegos son una de las principales causas de atropellos y colisiones en operaciones mineras.",
                 stageTitle: "PREGUNTA 3: EQUIPO PESADO", 
-                text: "¿Un camión de acarreo se encuentra maniobrando, un trabajador cruza frente al equipo. ¿Qué condición representa el mayor riesgo?", 
+                text: "¿Un camión se encuentra maniobrando, un trabajador cruza frente al equipo. ¿Qué condición representa el mayor riesgo?", 
                 options: [ 
                     { 
                         id: 'A', 
@@ -113,11 +113,11 @@ export const Station1 = () => {
                 stepName: "HERRAMIENTA",
                 reflection: "Las herramientas hechizas carecen de diseño, certificación y controles que garanticen su uso seguro.",
                 stageTitle: "PREGUNTA 4: HERRAMIENTAS MANUALES", 
-                text: "Durante una inspección detectas varias herramientas en uso. ¿Cuál de ellas representa una condición insegura de alto riesgo?", 
+                text: "Detectas varias herramientas en uso. ¿Qué herramienta representa una condición insegura de alto riesgo?", 
                 options: [ 
                     { 
                         id: 'A', 
-                        text: "Herramienta hechiza o modificada sin autorización", 
+                        text: "Hechiza o modificada sin autorización", 
                         img: "https://images.pexels.com/photos/2260783/pexels-photo-2260783.jpeg?auto=compress&cs=tinysrgb&w=300", 
                         isCorrect: true 
                     }, 
