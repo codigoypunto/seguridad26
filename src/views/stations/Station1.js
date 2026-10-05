@@ -11,132 +11,132 @@ export const Station1 = () => {
         questions: [
             { 
                 step: 1,
-                stepName: "EXCAVACIÓN",
+                stepName: "EXCAVACIONES",
                 reflection: "El material acumulado cerca del borde aumenta la carga sobre las paredes de la excavación y puede provocar derrumbes.",
                 stageTitle: "PREGUNTA 1: EXCAVACIONES", 
-                text: "En una excavación profunda con personal trabajando en su interior. ¿Qué condición representa el mayor riesgo de atrapamiento?", 
+                text: "Durante una inspección observas una excavación profunda con personal trabajando en su interior. ¿Qué condición representa el mayor riesgo de un derrumbe?", 
                 options: [ 
                     { 
                         id: 'A', 
-                        text: "Material excavado acumulado al borde de la zanja", 
-                        img: "https://images.pexels.com/photos/2892618/pexels-photo-2892618.jpeg?auto=compress&cs=tinysrgb&w=300", 
-                        isCorrect: true,
+                        text: "Vigía sin capacitación", 
+                        img: "src/images/est1/11a.jpg", 
+                        isCorrect: false,
                     }, 
                     { 
                         id: 'B', 
                         text: "Área delimitada con cinta de seguridad", 
-                        img: "https://images.pexels.com/photos/10365313/pexels-photo-10365313.jpeg?auto=compress&cs=tinysrgb&w=300", 
+                        img: "src/images/est1/11b.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'C', 
-                        text: "Vigía presente", 
-                        img: "https://images.pexels.com/photos/12386445/pexels-photo-12386445.jpeg?auto=compress&cs=tinysrgb&w=300", 
-                        isCorrect: false 
+                        text: "Material excavado acumulado al borde de la zanja y excavación sin sostenimiento", 
+                        img: "src/images/est1/11c.jpg", 
+                        isCorrect: true 
                     }, 
                     { 
                         id: 'D', 
                         text: "Escalera de acceso instalada", 
-                        img: "https://images.pexels.com/photos/2260783/pexels-photo-2260783.jpeg?auto=compress&cs=tinysrgb&w=300", 
+                        img: "src/images/est1/11d.jpg", 
                         isCorrect: false 
                     }
                 ]
             },
             { 
                 step: 2, 
-                stepName: "ALTURA",
+                stepName: "TRABAJOS EN ALTURA",
                 reflection: "Una caída puede ocurrir en segundos. La protección contra caídas debe mantenerse conectada en todo momento.",
                 stageTitle: "PREGUNTA 2: TRABAJOS EN ALTURA", 
-                text: "En un trabajo a más de 1.8 metros de altura. ¿Cuál constituye una condición crítica de riesgo?", 
+                text: "Durante una inspección observas a un trabajador armando un andamio a más de 4 metros de altura. ¿Qué condición constituye un riesgo crítico de caída de altura?", 
                 options: [ 
                     { 
                         id: 'A', 
                         text: "Andamio inspeccionado y señalizado", 
-                        img: "https://images.pexels.com/photos/12188448/pexels-photo-12188448.jpeg?auto=compress&cs=tinysrgb&w=300", 
+                        img: "src/images/est1/12a.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'B', 
-                        text: "No estar conectado a un punto de anclaje", 
-                        img: "https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=300", 
+                        text: "Trabajador con arnés, pero no está conectado a un punto de anclaje", 
+                        img: "src/images/est1/12b.jpg", 
                         isCorrect: true 
                     }, 
                     { 
                         id: 'C', 
                         text: "Línea de vida certificada", 
-                        img: "https://images.pexels.com/photos/2260783/pexels-photo-2260783.jpeg?auto=compress&cs=tinysrgb&w=300", 
+                        img: "src/images/est1/12c.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'D', 
-                        text: "Plataforma con rodapiés", 
-                        img: "https://images.pexels.com/photos/2892618/pexels-photo-2892618.jpeg?auto=compress&cs=tinysrgb&w=300", 
+                        text: "Plataforma sin rodapiés", 
+                        img: "src/images/est1/12d.jpg", 
                         isCorrect: false 
                     } 
                 ] 
             },
             { 
                 step: 3, 
-                stepName: "PUNTO CIEGO",
+                stepName: "EQUIPO PESADO",
                 reflection: "Los puntos ciegos son una de las principales causas de atropellos y colisiones en operaciones mineras.",
                 stageTitle: "PREGUNTA 3: EQUIPO PESADO", 
-                text: "¿Un camión se encuentra maniobrando, un trabajador cruza frente al equipo. ¿Qué condición representa el mayor riesgo?", 
+                text: "El operador de un camión de acarreo se encuentra realizando una maniobra en retroceso y en ese momento un trabajador cruza detrás del camión. ¿Qué condición representa el mayor riesgo?", 
                 options: [ 
                     { 
                         id: 'A', 
                         text: "Uso de radio de comunicación", 
-                        img: "https://images.pexels.com/photos/12386445/pexels-photo-12386445.jpeg?auto=compress&cs=tinysrgb&w=300", 
+                        img: "src/images/est1/13a.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'B', 
                         text: "Ingreso al punto ciego del operador", 
-                        img: "https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=300", 
+                        img: "src/images/est1/13b.jpg", 
                         isCorrect: true 
                     }, 
                     { 
                         id: 'C', 
                         text: "Mantener distancia segura", 
-                        img: "https://images.pexels.com/photos/10365313/pexels-photo-10365313.jpeg?auto=compress&cs=tinysrgb&w=300", 
+                        img: "src/images/est1/13c.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'D', 
                         text: "Establecer contacto visual con el operador", 
-                        img: "https://images.pexels.com/photos/2892618/pexels-photo-2892618.jpeg?auto=compress&cs=tinysrgb&w=300", 
+                        img: "src/images/est1/13d.jpg", 
                         isCorrect: false 
                     } 
                 ] 
             },
             { 
                 step: 4, 
-                stepName: "HERRAMIENTA",
+                stepName: "HERRAMIENTAS MANUALES",
                 reflection: "Las herramientas hechizas carecen de diseño, certificación y controles que garanticen su uso seguro.",
                 stageTitle: "PREGUNTA 4: HERRAMIENTAS MANUALES", 
-                text: "Detectas varias herramientas en uso. ¿Qué herramienta representa una condición insegura de alto riesgo?", 
+                text: "Durante una inspección detectas varias herramientas en uso. ¿Cuál de ellas representa una condición insegura de alto riesgo?", 
                 options: [ 
                     { 
                         id: 'A', 
-                        text: "Hechiza o modificada sin autorización", 
-                        img: "https://images.pexels.com/photos/2260783/pexels-photo-2260783.jpeg?auto=compress&cs=tinysrgb&w=300", 
-                        isCorrect: true 
+                        text: "Herramienta con inspección vigente", 
+                        img: "src/images/est1/14a.jpg", 
+                        isCorrect: false 
                     }, 
                     { 
                         id: 'B', 
-                        text: "Herramienta con inspección vigente", 
-                        img: "https://images.pexels.com/photos/12188448/pexels-photo-12188448.jpeg?auto=compress&cs=tinysrgb&w=300", 
-                        isCorrect: false 
+                        text: "Hechiza o modificada sin autorización", 
+                        img: "src/images/est1/14b.jpg", 
+                        isCorrect: true 
                     }, 
                     { 
                         id: 'C', 
                         text: "Herramienta con guarda instalada", 
-                        img: "https://images.pexels.com/photos/2892618/pexels-photo-2892618.jpeg?auto=compress&cs=tinysrgb&w=300", 
+                        img: "src/images/est1/14c.jpg", 
                         isCorrect: false 
                     }, 
                     { 
                         id: 'D', 
                         text: "Herramienta con mango ergonómico", 
-                        img: "https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=300", 
+                        img: "src/images/est1/14d.jpg", 
                         isCorrect: false 
                     } 
                 ] 
