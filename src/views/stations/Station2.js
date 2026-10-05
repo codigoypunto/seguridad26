@@ -11,7 +11,7 @@ const CONFIG = {
     TOTAL_TIME_SEC: 30.0,       // Tiempo de juego en segundos
     INITIAL_ENERGY: 100.0,      // Energía inicial (100%)
     DECAY_RATE_PER_SEC: 35.0,   // Pérdida automática de alerta por segundo
-    TAP_BOOST: 5.5,             // Alerta sumada por cada tap/click en la imagen
+    TAP_BOOST: 6.0,             // Alerta sumada por cada tap/click en la imagen
     TICK_INTERVAL_MS: 50,       // Intervalo de actualización de física (ms)
 };
 
