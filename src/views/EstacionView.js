@@ -3,7 +3,8 @@ import { navigate } from '../core/router.js';
 import { Station1 } from './stations/Station1.js';
 import { Station2 } from './stations/Station2.js';
 import { Station3 } from './stations/Station3.js';
-import { Station4 } from './stations/Station4.js'; // Importación añadida
+import { Station4 } from './stations/Station4.js';
+import { Station5 } from './stations/Station5.js';
 import { StationCode } from './stations/StationCode.js';
 
 export const EstacionView = () => {
@@ -16,7 +17,8 @@ export const EstacionView = () => {
             case 1: currentStationModule = Station1(); break;
             case 2: currentStationModule = Station2(); break;
             case 3: currentStationModule = Station3(); break;
-            case 4: currentStationModule = Station4(); break; // Módulo activado
+            case 4: currentStationModule = Station4(); break;
+            case 5: currentStationModule = Station5(); break;
             case 7: 
             case 8: 
             case 9: 
