@@ -89,7 +89,7 @@ export const Station3 = () => {
                         id: 'B', 
                         text: "Casco en buen estado", 
                         img: "src/images/est3/33b.jpg", 
-                        isCorrect: true 
+                        isCorrect: false 
                     }, 
                     { 
                         id: 'C', 
@@ -101,7 +101,7 @@ export const Station3 = () => {
                         id: 'D', 
                         text: "Colocar una señalización y barreras físicas para evitar que ingrese el personal", 
                         img: "src/images/est3/33d.jpg", 
-                        isCorrect: false 
+                        isCorrect: true 
                     } 
                 ] 
             },
