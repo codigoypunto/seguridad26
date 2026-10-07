@@ -5,6 +5,7 @@ import { Station2 } from './stations/Station2.js';
 import { Station3 } from './stations/Station3.js';
 import { Station4 } from './stations/Station4.js';
 import { Station5 } from './stations/Station5.js';
+import { Station6 } from './stations/Station6.js';
 import { StationCode } from './stations/StationCode.js';
 
 export const EstacionView = () => {
@@ -19,6 +20,7 @@ export const EstacionView = () => {
             case 3: currentStationModule = Station3(); break;
             case 4: currentStationModule = Station4(); break;
             case 5: currentStationModule = Station5(); break;
+            // case 6: currentStationModule = Station6(); break;
             case 7: 
             case 8: 
             case 9: 
