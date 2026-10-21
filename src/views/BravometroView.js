@@ -23,7 +23,7 @@ export const BravometroView = () => {
             maxScore: 31,
             name: "EXPERTO",
             color: "var(--color-primary)",
-            description: "Br@vo, tienes experiencia y aplicas la seguridad cada día.",
+            description: "Brav@, tienes experiencia y aplicas la seguridad cada día.",
             skills: [
                 { title: "Observador Atento", text: "Detectas riesgos y previenes." },
                 { title: "Comunicador efectivo", text: "Reportas y alertas a tiempo." },
@@ -35,7 +35,7 @@ export const BravometroView = () => {
             maxScore: 48,
             name: "MAESTRO",
             color: "var(--color-success)",
-            description: "Eres Br@vo de la Seguridad, líder y referente.",
+            description: "Eres Brav@ de la Seguridad, líder y referente.",
             skills: [
                 { title: "Observador Estratégico", text: "Anticipas y eliminas riesgos." },
                 { title: "Comunicador Líder", text: "Inspiras y generas Compromiso." },

@@ -13,7 +13,7 @@ export const EstrellasView = () => {
         const score = store.userData ? store.userData[`estacion${stationId}`] : 0;
 
         let feedbackText = "¡BUEN INTENTO!";
-        if (score === 4) feedbackText = "¡PERFECTO! ERES UN BR@VO";
+        if (score === 4) feedbackText = "¡PERFECTO! ERES UN BRAV@ DE LA SEGURIDAD";
         else if (score === 3) feedbackText = "¡MUY BIEN HECHO!";
         else if (score > 0) feedbackText = "¡VAS POR BUEN CAMINO!";
 

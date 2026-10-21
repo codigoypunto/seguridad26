@@ -7,7 +7,7 @@ export const Station3 = () => {
     const data = {
         stationId: 3,
         title: "CAÍDA DE ROCAS",
-        subtitle: "Resuelve la trivia Br@va",
+        subtitle: "Resuelve la trivia BRAV@",
         questions: [
             { 
                 step: 1, 

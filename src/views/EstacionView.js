@@ -6,7 +6,8 @@ import { Station3 } from './stations/Station3.js';
 import { Station4 } from './stations/Station4.js';
 import { Station5 } from './stations/Station5.js';
 import { Station6 } from './stations/Station6.js';
-import { StationCode } from './stations/StationCode.js';
+// Importamos el nuevo módulo de la Frase (Asegúrate de guardar el código del paso 3 en este archivo)
+import { StationPhrase } from './stations/StationPhrase.js'; 
 
 export const EstacionView = () => {
     let currentStationModule = null;
@@ -20,14 +21,16 @@ export const EstacionView = () => {
             case 3: currentStationModule = Station3(); break;
             case 4: currentStationModule = Station4(); break;
             case 5: currentStationModule = Station5(); break;
-            // case 6: currentStationModule = Station6(); break;
+            case 6: currentStationModule = Station6(); break;
+            // Estaciones de la 7 a la 13 apuntan al nuevo juego de frases secretas
             case 7: 
             case 8: 
             case 9: 
             case 10: 
             case 11: 
             case 12: 
-                currentStationModule = StationCode(stationId); 
+            case 13: 
+                currentStationModule = StationPhrase(stationId); 
                 break;
             default:
                 currentStationModule = {
@@ -44,9 +47,6 @@ export const EstacionView = () => {
                                 <h2 style="color: var(--color-cyan-glow); font-size: 20px; font-weight: 900; margin-bottom: 10px;">
                                     ESTACIÓN ${stationId} EN CONSTRUCCIÓN
                                 </h2>
-                                <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 20px; line-height: 1.4;">
-                                    Estamos preparando el minijuego interactivo para esta sección.
-                                </p>
                                 <button id="btnBackFromConstruction" class="btn-primary pulse-btn">
                                     VOLVER A ESTACIONES
                                 </button>

@@ -1,6 +1,8 @@
 /**
- * Módulo de Estación 6: Seguridad Vial (Laberinto de Pulso y Trivia de Señales)
- * Objetivo: Conducir un vehículo táctil sin salir de la vía. Si choca, responde una trivia con imágenes.
+ * Módulo de Estación 6: Seguridad Vial (Laberinto "Scary Maze" - Nivel Extremo)
+ * Objetivo: Conducir la camioneta por un circuito microscópico.
+ * Nueva Mecánica de Movimiento: Trackpad Virtual. El jugador puede tocar en cualquier parte 
+ * de la pantalla para deslizar y mover el vehículo remotamente para no tapar la vista.
  */
 import { updateProgress } from '../../core/store.js';
 import { navigate } from '../../core/router.js';
@@ -9,22 +11,22 @@ import { navigate } from '../../core/router.js';
 // PARÁMETROS CONFIGURABLES
 // ==========================================================================
 const CONFIG = {
-    INVINCIBILITY_MS: 1500, // Tiempo de invulnerabilidad después de un choque (ms)
+    INVINCIBILITY_MS: 1500, // Tiempo de invulnerabilidad después de un choque/checkpoint (ms)
     STARS_THRESHOLDS: {
-        FOUR_STARS: 1,   // 0 a 1 error/choque = 4 estrellas
-        THREE_STARS: 3,  // 2 a 3 errores = 3 estrellas
-        TWO_STARS: 5     // 4 a 5 errores = 2 estrellas
-                         // 6+ errores = 1 estrella
+        FOUR_STARS: 2,   // 0 a 2 errores = 4 estrellas
+        THREE_STARS: 5,  // 3 a 5 errores = 3 estrellas
+        TWO_STARS: 8     // 6 a 8 errores = 2 estrellas
+                         // 9+ errores = 1 estrella
     }
 };
 
 // ==========================================================================
-// BANCO DE TRIVIAS VISUALES (Basado en infografía est6.jpg)
+// BANCO DE TRIVIAS VISUALES (12 Preguntas)
 // ==========================================================================
 const TRIVIA_DATA = [
     {
-        id: 1,
-        img: "src/images/est6/s-pare.jpg", // Asegúrate de tener estas imágenes recortadas
+        id: 1, 
+        img: "src/images/est6/s-pare.jpg", 
         question: "¿Qué tipo de señal es y qué obligación indica?",
         options: [
             { text: "Informativa - Parada de descanso", isCorrect: false },
@@ -33,7 +35,7 @@ const TRIVIA_DATA = [
         ]
     },
     {
-        id: 2,
+        id: 2, 
         img: "src/images/est6/s-rocas.jpg",
         question: "¿A qué categoría pertenece esta señal amarilla?",
         options: [
@@ -43,19 +45,19 @@ const TRIVIA_DATA = [
         ]
     },
     {
-        id: 3,
+        id: 3, 
         img: "src/images/est6/s-retroceso.jpg",
         question: "¿Qué información brinda esta señal azul con un camión?",
         options: [
             { text: "Zona de lavado de equipos pesados", isCorrect: false },
-            { text: "Obligación de estacionar en retroceso (Equipos Pesados)", isCorrect: true },
+            { text: "Obligación de estacionar en retroceso", isCorrect: true },
             { text: "Prohibido estacionar en esta área", isCorrect: false }
         ]
     },
     {
-        id: 4,
+        id: 4, 
         img: "src/images/est6/s-cinturon.jpg",
-        question: "¿Qué nos indica esta señal roja y azul?",
+        question: "¿Qué nos indica esta señal azul?",
         options: [
             { text: "Recomendación de usar cinturón", isCorrect: false },
             { text: "Reguladora - Uso obligatorio del cinturón de seguridad", isCorrect: true },
@@ -63,7 +65,7 @@ const TRIVIA_DATA = [
         ]
     },
     {
-        id: 5,
+        id: 5, 
         img: "src/images/est6/s-distancia.jpg",
         question: "¿Cuál es la distancia mínima segura que indica esta señal para equipo pesado?",
         options: [
@@ -71,21 +73,40 @@ const TRIVIA_DATA = [
             { text: "50 metros", isCorrect: true },
             { text: "100 metros", isCorrect: false }
         ]
-    }
+    },
+
+/* 
+    { id: 6, img: "src/images/est6/s-tu-imagen6.jpg", question: "[PREGUNTA 6]", options: [{ text: "X", isCorrect: true }, { text: "Y", isCorrect: false }, { text: "Z", isCorrect: false }] },
+    { id: 7, img: "src/images/est6/s-tu-imagen7.jpg", question: "[PREGUNTA 7]", options: [{ text: "X", isCorrect: true }, { text: "Y", isCorrect: false }, { text: "Z", isCorrect: false }] },
+ */
+
 ];
 
+// Camioneta SVG 
+const TRUCK_SVG = `<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1860.88 3040.16"><defs><style>.cls-1,.cls-2,.cls-4{fill:#212121;}.cls-1,.cls-2,.cls-3,.cls-4,.cls-5,.cls-6,.cls-7{stroke:#000;}.cls-1,.cls-2,.cls-3,.cls-5,.cls-6,.cls-7{stroke-miterlimit:54;}.cls-1{stroke-width:55.62px;}.cls-2{stroke-width:57.57px;}.cls-3{fill:#e53935;stroke-width:53.44px;}.cls-4{stroke-linejoin:round;}.cls-4,.cls-5{stroke-width:45.81px;}.cls-5{fill:#1e1e1e;}.cls-6{fill:#ff1744;}.cls-6,.cls-7{stroke-width:30.54px;}.cls-7{fill:#ffac1a;}</style></defs><path class="cls-1" d="M911.25,516.82h0c37.94,0,68.7,35.85,68.7,80.07V997.21c0,44.22-30.76,80.07-68.7,80.07h0c-37.94,0-68.7-35.85-68.7-80.07V596.89C842.55,552.67,873.31,516.82,911.25,516.82Z" transform="translate(-813.77 -109.98)"/><path class="cls-1" d="M2577.17,516.82h0c37.94,0,68.69,35.85,68.69,80.07V997.21c0,44.22-30.75,80.07-68.69,80.07h0c-38,0-68.7-35.85-68.7-80.07V596.89C2508.47,552.67,2539.22,516.82,2577.17,516.82Z" transform="translate(-813.77 -109.98)"/><path class="cls-2" d="M911.25,2142.88h0c37.94,0,68.7,38.4,68.7,85.77v428.86c0,47.37-30.76,85.77-68.7,85.77h0c-37.94,0-68.7-38.4-68.7-85.77V2228.65C842.55,2181.28,873.31,2142.88,911.25,2142.88Z" transform="translate(-813.77 -109.98)"/><path class="cls-2" d="M2577.17,2142.88h0c37.94,0,68.69,38.4,68.69,85.77v428.86c0,47.37-30.75,85.77-68.69,85.77h0c-38,0-68.7-38.4-68.7-85.77V2228.65C2508.47,2181.28,2539.22,2142.88,2577.17,2142.88Z" transform="translate(-813.77 -109.98)"/><path class="cls-3" d="M1220.39,136.7H2268c132.79,0,240.44,85.09,240.44,190.06V2933.35c0,105-107.65,190.06-240.44,190.06H1220.39c-132.79,0-240.44-85.09-240.44-190.06V326.76C980,221.79,1087.6,136.7,1220.39,136.7Z" transform="translate(-813.77 -109.98)"/><path class="cls-4" d="M1151.69,761.19c377.84-81.45,807.2-81.45,1185,0l-103,217.22c-360.66-54.31-618.28-54.31-978.94,0Z" transform="translate(-813.77 -109.98)"/><path class="cls-4" d="M1254.74,1575.75c360.66,54.3,618.28,54.3,978.94,0l-34.35,81.46c-326.31,40.72-583.93,40.72-910.24,0Z" transform="translate(-813.77 -109.98)"/><path class="cls-5" d="M1220.39,1793H2268c37.94,0,68.69,24.31,68.69,54.3V2879c0,30-30.75,54.31-68.69,54.31H1220.39c-37.94,0-68.7-24.32-68.7-54.31V1847.27C1151.69,1817.28,1182.45,1793,1220.39,1793Z" transform="translate(-813.77 -109.98)"/><path class="cls-6" d="M1065.82,3014.8h171.74c9.49,0,17.18,6.08,17.18,13.58v27.15c0,7.5-7.69,13.58-17.18,13.58H1065.82c-9.49,0-17.17-6.08-17.17-13.58v-27.15C1048.65,3020.88,1056.33,3014.8,1065.82,3014.8Z" transform="translate(-813.77 -109.98)"/><path class="cls-6" d="M2250.85,3014.8H2422.6c9.48,0,17.17,6.08,17.17,13.58v27.15c0,7.5-7.69,13.58-17.17,13.58H2250.85c-9.48,0-17.17-6.08-17.17-13.58v-27.15C2233.68,3020.88,2241.37,3014.8,2250.85,3014.8Z" transform="translate(-813.77 -109.98)"/><path class="cls-7" d="M1065.82,207.94h171.74c9.49,0,17.18,6.07,17.18,13.57v27.15c0,7.5-7.69,13.58-17.18,13.58H1065.82c-9.49,0-17.17-6.08-17.17-13.58V221.51C1048.65,214,1056.33,207.94,1065.82,207.94Z" transform="translate(-813.77 -109.98)"/><path class="cls-7" d="M2250.85,207.94H2422.6c9.48,0,17.17,6.07,17.17,13.57v27.15c0,7.5-7.69,13.58-17.17,13.58H2250.85c-9.48,0-17.17-6.08-17.17-13.58V221.51C2233.68,214,2241.37,207.94,2250.85,207.94Z" transform="translate(-813.77 -109.98)"/></svg>`;
+
 export const Station6 = () => {
+    // Controladores de estado
     let mistakes = 0;
     let collisions = 0;
+    
+    // Variables para el Trackpad Virtual
     let isDragging = false;
-    let isInvincible = false;
-    let currentQuestion = null;
-    let initialX, initialY;
+    let initialFingerX = 0; // Dónde tocó el dedo inicialmente
+    let initialFingerY = 0;
+    let initialVehicleX = 0; // Dónde estaba el vehículo antes de moverlo
+    let initialVehicleY = 0;
 
-    // Obtener una pregunta aleatoria
-    const getRandomQuestion = () => {
-        return TRIVIA_DATA[Math.floor(Math.random() * TRIVIA_DATA.length)];
-    };
+    let isInvincible = false;
+    
+    // Variables de estado del laberinto
+    let clearedCheckpoints = [];
+    let lastSafeLeft = null;
+    let lastSafeTop = null;
+    let currentModalType = null; 
+
+    // Extrae una pregunta al azar
+    const getRandomQuestion = () => TRIVIA_DATA[Math.floor(Math.random() * TRIVIA_DATA.length)];
 
     const render = async () => {
         const fragment = document.createDocumentFragment();
@@ -93,16 +114,92 @@ export const Station6 = () => {
         container.className = 'view-container station-engine-view slide-in-right';
         container.id = 'station6Container';
 
-        // Estilos en línea para elementos dinámicos
         const style = document.createElement('style');
         style.innerHTML = `
-            .track-bg { background: repeating-linear-gradient(45deg, #1A0500, #1A0500 10px, #330A00 10px, #330A00 20px); border-radius: var(--border-radius-md); overflow: hidden; position: relative; border: 2px solid var(--color-danger); }
-            .safe-road { background-color: #3B4252; position: absolute; border: 1px dashed rgba(255, 255, 255, 0.2); }
-            .road-start { background-color: var(--color-success); display: flex; align-items: center; justify-content: center; font-weight: 900; color: #000; font-size: 10px; }
-            .road-finish { background-color: var(--color-cyan-glow); display: flex; align-items: center; justify-content: center; font-weight: 900; color: #000; font-size: 10px; }
-            .vehicle { width: 36px; height: 36px; background: var(--color-primary); border: 2px solid #FFF; border-radius: 50%; position: absolute; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); touch-action: none; cursor: grab; z-index: 10; }
-            .blinking { animation: blinkAnim 0.3s infinite alternate; box-shadow: 0 0 15px var(--color-success); border-color: var(--color-success); }
-            @keyframes blinkAnim { from { opacity: 1; } to { opacity: 0.3; } }
+            /* El contenedor track-bg ahora tiene touch-action: none para que el usuario 
+               pueda deslizar el dedo en cualquier parte sin hacer scroll en la pantalla. */
+            .track-bg { 
+                background: radial-gradient(circle, #060057 0%, #140931 100%); 
+                border-radius: var(--border-radius-md); 
+                overflow: hidden; 
+                position: relative; 
+                border: 2px solid var(--color-cyan-glow); 
+                touch-action: none; 
+                cursor: grab;
+            }
+            .track-bg:active { cursor: grabbing; }
+            
+            .safe-road { 
+                background-color: #3B4252;
+                position: absolute; 
+                border-radius: 4px; 
+                box-shadow: inset 0 0 12px rgba(0,0,0,0.9);
+            }
+
+            .safe-road-h { 
+                position: absolute; 
+                // box-shadow: inset 0 0 12px #3B4252;
+                outline: 8px solid #3B4252;
+                background-color: #c0c0c0;
+                height: 4%;
+            }
+
+            .safe-road-v {
+                position: absolute; 
+                // box-shadow: inset 0 0 12px #3B4252;
+                outline: 8px solid #3B4252;
+                background-color: #c0c0c0;
+                width: 7%;
+            }
+
+            .road-start { 
+                background-color: var(--color-cyan-glow);
+                display: flex; align-items: center; justify-content: center; 
+                font-weight: 900; color: #000; font-size: 9px; z-index: 1;
+            }
+
+            .road-finish { 
+                background-color: var(--color-success);
+                display: flex; align-items: center; justify-content: center; 
+                font-weight: 900; color: #000; font-size: 9px; z-index: 1;
+            }
+            
+            .checkpoint { 
+                background: rgba(0, 0, 0, 0); 
+                display: flex; align-items: center; justify-content: center; z-index: 2;
+            }
+
+            .checkpoint span { 
+                font-size: 8px; font-weight: 900; color: #FFF; 
+                text-shadow: 0 0 3px #000; text-transform: uppercase; 
+            }
+
+            .vehicle { 
+                width: 13px; height: 13px; 
+                position: absolute; 
+                display: flex; align-items: center; justify-content: center; 
+                z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8)); 
+                /* Ya no necesita cursor ni touch-action porque los eventos van al contenedor padre */
+                pointer-events: none; 
+            }
+
+            .blinking { 
+                animation: blinkAnim 0.3s infinite alternate; 
+                filter: drop-shadow(0 0 8px var(--color-success)); 
+            }
+            
+            @keyframes blinkAnim { from { opacity: 1; } to { opacity: 0.2; } }
+            
+            .shake-severe { 
+                animation: shakeSevereAnim 0.4s cubic-bezier(.36,.07,.19,.97) both; 
+                border-color: #FF0000 !important; box-shadow: 0 0 30px #FF0000; 
+            }
+
+            @keyframes shakeSevereAnim { 
+                0%, 100% { transform: translate3d(0, 0, 0); } 
+                10%, 30%, 50%, 70%, 90% { transform: translate3d(-8px, 5px, 0); } 
+                20%, 40%, 60%, 80% { transform: translate3d(8px, -5px, 0); } 
+            }
         `;
         fragment.appendChild(style);
 
@@ -113,46 +210,71 @@ export const Station6 = () => {
 
             <div class="trivia-header pop-in" style="margin-bottom: 5px;">
                 <h2 class="title-trivia">SEGURIDAD VIAL</h2>
-                <p class="subtitle-trivia">Guía el vehículo sin salir de la vía. ¡Cuidado con chocar!</p>
+                <p class="subtitle-trivia">Desliza el dedo en cualquier lado para manejar.</p>
             </div>
 
-            <!-- Contenedor del Laberinto -->
-            <div class="track-bg" id="trackContainer" style="flex: 1; width: 100%; margin-bottom: 10px;">
+            <!-- LABERINTO SINUOSO PERSONALIZADO -->
+            <!-- Ahora el ID trackContainer recibe los toques para funcionar como trackpad -->
+            <div class="track-bg" id="trackContainer" style="flex: 1; width: 100%; margin-bottom: 10px; position: relative;">
+
+                <!-- START -->
+                <div class="safe-road road-start" style="top: 87%; left: 4%; width: 13%; height: 8%;">START</div>
+
+                <!-- RUTA PERSONALIZADA -->
+                <div id="r1" class="safe-road-h" style="top: 89%; left: 10%; width: 50%;"></div>
+                <div id="r2" class="safe-road-v" style="top: 80%; left: 55%; height: 13%;"></div>
+                <div id="r3" class="safe-road-h" style="top: 80%; left: 55%; width: 30%;"></div>
+                <div id="r4" class="safe-road-v" style="top: 53%; left: 80%; height: 31%;"></div>
+                <div id="r5" class="safe-road-h" style="top: 53%; left: 60%; width: 27%;"></div>
+                <div id="r6" class="safe-road-v" style="top: 53%; left: 60%; height: 21%;"></div>
+                <div id="r7" class="safe-road-h" style="top: 70%; left: 40%; width: 27%;"></div>
+                <div id="r8" class="safe-road-v" style="top: 53%; left: 40%; height: 21%;"></div>
+                <div id="r9" class="safe-road-h" style="top: 53%; left: 25%; width: 22%;"></div>
+                <div id="r10" class="safe-road-v" style="top: 53%; left: 25%; height: 31%;"></div>
+                <div id="r11" class="safe-road-h" style="top: 80%; left: 10%; width: 22%;"></div>
+                <div id="r12" class="safe-road-v" style="top: 43%; left: 10%; height:41%;"></div>
+                <div id="r13" class="safe-road-h" style="top: 43%; left: 10%; width: 42%;"></div>
+                <div id="r14" class="safe-road-v" style="top: 34%; left: 45%; height:13%;"></div>
+                <div id="r15" class="safe-road-h" style="top: 34%; left: 10%; width: 42%;"></div>
+                <div id="r16" class="safe-road-v" style="top: 20%; left: 10%; height:18%;"></div>
+                <div id="r17" class="safe-road-h" style="top: 20%; left: 10%; width: 55%;"></div>
+                <div id="r18" class="safe-road-v" style="top: 20%; left: 60%; height:25%;"></div>
+                <div id="r19" class="safe-road-h" style="top: 43%; left: 60%; width: 32%;"></div>
+                <div id="r20" class="safe-road-v" style="top: 6%; left: 85%; height: 41%;"></div>
+                <div id="r21" class="safe-road-h" style="top: 6%; left: 25%; width: 67%;"></div>
                 
-                <!-- Circuito de Carretera (Safe Zones) -->
-                <!-- Tramos del laberinto dibujados con porcentajes para responsividad -->
-                <div class="safe-road road-start" style="bottom: 5%; left: 5%; width: 25%; height: 20%;">INICIO</div>
-                <div class="safe-road" style="bottom: 5%; left: 5%; width: 25%; height: 50%;"></div>
-                <div class="safe-road" style="bottom: 35%; left: 5%; width: 90%; height: 20%;"></div>
-                <div class="safe-road" style="top: 15%; right: 5%; width: 25%; height: 40%;"></div>
-                <div class="safe-road" style="top: 15%; left: 15%; width: 85%; height: 20%;"></div>
-                <div class="safe-road road-finish" id="finishLine" style="top: 15%; left: 5%; width: 25%; height: 20%;">META</div>
+                <!-- CHECKPOINTS -->
+                <div class="safe-road checkpoint" data-id="cp1" style="top: 65%; left: 78%; width: 11%; height: 7%;"><span><img src="src/images/est6/s-pare.jpg" alt="PARE" style="width: 100%; height: 100%; object-fit: contain;"></span></div>
+                <div class="safe-road checkpoint" data-id="cp2" style="top: 63%; left: 23%; width: 11%; height: 7%;"><span><img src="src/images/est6/s-pare.jpg" alt="PARE" style="width: 100%; height: 100%; object-fit: contain;"></span></div>
+                <div class="safe-road checkpoint" data-id="cp3" style="top: 18.5%; left: 30%; width: 11%; height: 7%;"><span><img src="src/images/est6/s-pare.jpg" alt="PARE" style="width: 100%; height: 100%; object-fit: contain;"></span></div>
+                <div class="safe-road checkpoint" data-id="cp4" style="top: 41.5%; left: 72%; width: 11%; height: 7%;"><span><img src="src/images/est6/s-pare.jpg" alt="PARE" style="width: 100%; height: 100%; object-fit: contain;"></span></div>
+                
+                <!-- META -->
+                <div class="safe-road road-finish" style="top: 2%; left: 10%; width: 20%; height: 10%;">META</div>
 
-                <!-- Vehículo (Draggable) -->
-                <div id="playerVehicle" class="vehicle" style="bottom: 8%; left: 8%;">🚜</div>
+                <!-- VEHÍCULO -->
+                <div id="playerVehicle" class="vehicle" style="top: 90%; left: 8%;">
+                    ${TRUCK_SVG}
+                </div>
             </div>
 
-            <!-- Modal de Trivia de Penalización -->
-            <div id="penaltyModal" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 13, 82, 0.95); z-index: 100; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; backdrop-filter: blur(8px);">
-                <div style="font-size: 35px; margin-bottom: 5px;">💥</div>
-                <h3 style="color: var(--color-danger); font-weight: 900; font-size: 20px; margin-bottom: 10px; text-transform: uppercase;">¡Te saliste de la vía!</h3>
-                <p style="color: #FFF; font-size: 13px; margin-bottom: 15px;">Responde la trivia vial para continuar:</p>
+            <!-- MODALES OMITIDOS PARA BREVEDAD EN COMENTARIO, IDÉNTICOS A VERSIÓN ANTERIOR -->
+            <div id="triviaModal" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 13, 82, 0.95); z-index: 100; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; backdrop-filter: blur(8px);">
+                <div id="modalIcon" style="font-size: 35px; margin-bottom: 5px;"></div>
+                <h3 id="modalTitle" style="font-weight: 900; font-size: 20px; margin-bottom: 10px; text-transform: uppercase;"></h3>
+                <p style="color: #FFF; font-size: 13px; margin-bottom: 15px;">Responde para continuar:</p>
                 
                 <div class="active-step-card" style="background: rgba(0, 20, 80, 0.8);">
-                    <!-- Imagen de la Señal de Tránsito -->
-                    <img id="triviaImg" src="" alt="Señal de Tránsito" style="width: 100px; height: 100px; object-fit: contain; margin-bottom: 10px; border-radius: 8px; border: 2px solid var(--color-cyan-glow); background: #FFF;">
+                    <img id="triviaImg" src="" alt="Señal" style="width: 100px; height: 100px; object-fit: contain; margin-bottom: 10px; border-radius: 8px; border: 2px solid var(--color-cyan-glow); background: #FFF;">
                     <p id="triviaQuestion" style="font-size: 14px; font-weight: bold; color: var(--color-primary);"></p>
                 </div>
-
-                <div id="triviaOptions" style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
-                    <!-- Opciones inyectadas por JS -->
-                </div>
+                <div id="triviaOptions" style="display: flex; flex-direction: column; gap: 8px; width: 100%;"></div>
             </div>
 
-            <!-- Pantalla Final (Oculta hasta ganar) -->
+            <!-- PANTALLA DE VICTORIA -->
             <div id="victoryScreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 25, 90, 0.95); z-index: 100; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center;">
                 <div style="font-size: 60px; margin-bottom: 10px;">🏆</div>
-                <h3 style="color: var(--color-primary); font-weight: 900; font-size: 24px; margin-bottom: 10px;">¡RECORRIDO SEGURO!</h3>
+                <h3 style="color: var(--color-primary); font-weight: 900; font-size: 24px; margin-bottom: 10px;">¡CIRCUITO COMPLETADO!</h3>
                 <p id="statsText" style="color: #FFF; font-size: 14px; margin-bottom: 25px;"></p>
                 <button id="btnFinish" class="btn-primary pulse-btn btn-gold-glow" style="width: 100%;">FINALIZAR ESTACIÓN</button>
             </div>
@@ -165,30 +287,49 @@ export const Station6 = () => {
     const afterRender = () => {
         const vehicle = document.getElementById('playerVehicle');
         const trackContainer = document.getElementById('trackContainer');
-        const penaltyModal = document.getElementById('penaltyModal');
+        const triviaModal = document.getElementById('triviaModal');
         const victoryScreen = document.getElementById('victoryScreen');
+        
+        const modalIcon = document.getElementById('modalIcon');
+        const modalTitle = document.getElementById('modalTitle');
         const triviaImg = document.getElementById('triviaImg');
         const triviaQuestion = document.getElementById('triviaQuestion');
         const triviaOptions = document.getElementById('triviaOptions');
         
-        // --- 1. LÓGICA DE LA TRIVIA DE PENALIZACIÓN ---
-        const triggerPenalty = () => {
+        // Función Central para activar Trivia (Choques o Checkpoints)
+        const triggerTrivia = (type, checkpointId = null) => {
             isDragging = false;
-            collisions++;
-            currentQuestion = getRandomQuestion();
+            currentModalType = type;
+            const currentQuestion = getRandomQuestion();
             
-            // Llenar datos de la pregunta
+            if (type === 'collision') {
+                collisions++;
+                modalIcon.innerText = "💥";
+                modalTitle.innerText = "¡TE SALISTE DE LA VÍA!";
+                modalTitle.style.color = "var(--color-danger)";
+                
+                trackContainer.classList.add('shake-severe');
+                setTimeout(() => trackContainer.classList.remove('shake-severe'), 400);
+            } else if (type === 'checkpoint') {
+                modalIcon.innerText = "📍";
+                modalTitle.innerText = "¡PUNTO DE CONTROL!";
+                modalTitle.style.color = "var(--color-cyan-glow)";
+                
+                lastSafeLeft = vehicle.style.left;
+                lastSafeTop = vehicle.style.top;
+                if (checkpointId) clearedCheckpoints.push(checkpointId);
+            }
+            
             triviaImg.src = currentQuestion.img;
             triviaQuestion.innerText = currentQuestion.question;
-            triviaOptions.innerHTML = currentQuestion.options.map((opt, index) => `
+            triviaOptions.innerHTML = currentQuestion.options.map(opt => `
                 <button class="btn-secondary option-btn" data-correct="${opt.isCorrect}" style="text-align: left; padding: 10px;">
                     ${opt.text}
                 </button>
             `).join('');
 
-            penaltyModal.style.display = 'flex';
+            triviaModal.style.display = 'flex';
 
-            // Escuchar clics en las opciones
             document.querySelectorAll('.option-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const isCorrect = e.target.getAttribute('data-correct') === 'true';
@@ -198,84 +339,131 @@ export const Station6 = () => {
                         e.target.style.color = '#000';
                     } else {
                         e.target.style.background = 'var(--color-danger)';
-                        mistakes++; // Suma un error a la calificación final
+                        mistakes++; 
                     }
 
-                    // Esperar 1 segundo y cerrar el modal para reanudar
                     setTimeout(() => {
-                        penaltyModal.style.display = 'none';
+                        triviaModal.style.display = 'none';
+                        
+                        // Retornar al checkpoint si se chocó
+                        if (currentModalType === 'collision' && lastSafeLeft !== null) {
+                            vehicle.style.left = lastSafeLeft;
+                            vehicle.style.top = lastSafeTop;
+                        }
+                        
                         grantInvincibility();
                     }, 1000);
                 });
             });
         };
 
-        // --- 2. SISTEMA DE INVENCIBILIDAD (Para no chocar en bucle al salir del modal) ---
         const grantInvincibility = () => {
             isInvincible = true;
             vehicle.classList.add('blinking');
-            
             setTimeout(() => {
                 isInvincible = false;
                 vehicle.classList.remove('blinking');
             }, CONFIG.INVINCIBILITY_MS);
         };
 
-        // --- 3. LÓGICA DE CONTROL DEL VEHÍCULO Y COLISIONES ---
-        vehicle.addEventListener('pointerdown', (e) => {
-            if (penaltyModal.style.display === 'flex' || victoryScreen.style.display === 'flex') return;
+        // ==========================================================================
+        // NUEVA MECÁNICA: TRACKPAD VIRTUAL
+        // Eventos aplicados al "trackContainer" (toda la pantalla negra) en lugar del vehículo
+        // ==========================================================================
+        
+        trackContainer.addEventListener('pointerdown', (e) => {
+            if (triviaModal.style.display === 'flex' || victoryScreen.style.display === 'flex') return;
             
+            const vehicleRect = vehicle.getBoundingClientRect();
+            const containerRect = trackContainer.getBoundingClientRect();
+            
+            // Si es la primera vez que inicia, guardamos la posición en variables globales seguras
+            if (!lastSafeLeft) {
+                lastSafeLeft = `${vehicleRect.left - containerRect.left}px`;
+                lastSafeTop = `${vehicleRect.top - containerRect.top}px`;
+            }
+
             isDragging = true;
-            const rect = vehicle.getBoundingClientRect();
-            initialX = e.clientX - rect.left;
-            initialY = e.clientY - rect.top;
             
-            vehicle.setPointerCapture(e.pointerId);
+            // Guardamos las coordenadas del toque inicial en la pantalla
+            initialFingerX = e.clientX;
+            initialFingerY = e.clientY;
+            
+            // Guardamos dónde está el vehículo en píxeles antes de empezar a moverlo
+            initialVehicleX = vehicleRect.left - containerRect.left;
+            initialVehicleY = vehicleRect.top - containerRect.top;
+            
+            trackContainer.setPointerCapture(e.pointerId);
         });
 
-        vehicle.addEventListener('pointermove', (e) => {
+        trackContainer.addEventListener('pointermove', (e) => {
             if (!isDragging) return;
 
-            // Mover el vehículo
-            const containerRect = trackContainer.getBoundingClientRect();
-            let newLeft = e.clientX - initialX - containerRect.left;
-            let newTop = e.clientY - initialY - containerRect.top;
+            // 1. Calculamos cuánto se deslizó el dedo en cualquier punto de la pantalla
+            const deltaX = e.clientX - initialFingerX;
+            const deltaY = e.clientY - initialFingerY;
+
+            // 2. Sumamos ese movimiento a la posición original del vehículo
+            let newLeft = initialVehicleX + deltaX;
+            let newTop = initialVehicleY + deltaY;
 
             vehicle.style.left = `${newLeft}px`;
             vehicle.style.top = `${newTop}px`;
 
-            // SI ES INVENCIBLE, NO CALCULAMOS COLISIÓN
             if (isInvincible) return;
 
-            // MAGIA DE COLISIÓN: Ocultamos el carro temporalmente, miramos qué hay debajo del dedo
-            vehicle.style.display = 'none';
-            const elementUnderFinger = document.elementFromPoint(e.clientX, e.clientY);
-            vehicle.style.display = 'flex'; // Lo volvemos a mostrar instantáneamente
+            // ==========================================================================
+            // NUEVO SISTEMA DE COLISIÓN (Escanea el centro del vehículo, no el dedo)
+            // ==========================================================================
+            const containerRect = trackContainer.getBoundingClientRect();
+            // Obtenemos las coordenadas exactas del centro del vehículo en la pantalla
+            const vehicleCenterX = containerRect.left + newLeft + (vehicle.offsetWidth / 2);
+            const vehicleCenterY = containerRect.top + newTop + (vehicle.offsetHeight / 2);
 
-            if (elementUnderFinger) {
-                // Si tocamos la META
-                if (elementUnderFinger.classList.contains('road-finish') || elementUnderFinger.closest('.road-finish')) {
+            vehicle.style.display = 'none'; // Ocultar para poder escanear el fondo
+            const elementUnderVehicle = document.elementFromPoint(vehicleCenterX, vehicleCenterY);
+            vehicle.style.display = 'flex'; // Volver a mostrar
+
+            if (elementUnderVehicle) {
+                // Llegada a la meta
+                if (elementUnderVehicle.classList.contains('road-finish') || elementUnderVehicle.closest('.road-finish')) {
                     isDragging = false;
                     showVictory();
                     return;
                 }
 
-                // Si no tocamos la vía segura (salimos de la pista)
-                if (!elementUnderFinger.classList.contains('safe-road') && !elementUnderFinger.closest('.safe-road')) {
-                    triggerPenalty();
+                // Checkpoint
+                const isCheckpoint = elementUnderVehicle.classList.contains('checkpoint') || elementUnderVehicle.closest('.checkpoint');
+                if (isCheckpoint) {
+                    const cpElement = elementUnderVehicle.closest('.checkpoint') || elementUnderVehicle;
+                    const cpId = cpElement.getAttribute('data-id');
+                    
+                    if (!clearedCheckpoints.includes(cpId)) {
+                        triggerTrivia('checkpoint', cpId);
+                        return;
+                    }
+                }
+
+                // Validar la carretera segura
+                const isSafeRoad = elementUnderVehicle.classList.contains('safe-road') || elementUnderVehicle.closest('.safe-road') || elementUnderVehicle.classList.contains('safe-road-v') || elementUnderVehicle.closest('.safe-road-v') || elementUnderVehicle.classList.contains('safe-road-h') || elementUnderVehicle.closest('.safe-road-h');
+                
+                // Si el centro del vehículo toca algo que no es vía segura ni checkpoint, choca.
+                if (!isSafeRoad && !isCheckpoint) {
+                    triggerTrivia('collision');
                 }
             }
         });
 
-        vehicle.addEventListener('pointerup', (e) => {
+        trackContainer.addEventListener('pointerup', (e) => {
             isDragging = false;
-            vehicle.releasePointerCapture(e.pointerId);
+            trackContainer.releasePointerCapture(e.pointerId);
         });
 
-        // --- 4. FIN DEL JUEGO Y CÁLCULO DE ESTRELLAS ---
+        // ==========================================================================
+        // FIN DEL JUEGO Y CÁLCULO DE ESTRELLAS
+        // ==========================================================================
         const showVictory = () => {
-            const totalErrors = collisions + mistakes;
-            document.getElementById('statsText').innerHTML = `Choques: <b>${collisions}</b> <br> Errores en trivia: <b>${mistakes}</b>`;
+            document.getElementById('statsText').innerHTML = `Salidas de vía: <b>${collisions}</b> <br> Errores en trivia: <b>${mistakes}</b>`;
             victoryScreen.style.display = 'flex';
         };
 

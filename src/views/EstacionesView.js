@@ -2,7 +2,7 @@ import { store } from '../core/store.js';
 import { navigate } from '../core/router.js';
 
 export const EstacionesView = () => {
-    // Definición de los 12 módulos de la campaña
+    // Definición de los 13 módulos de la campaña actualizados
     const stationsData = [
         { id: 1, name: "Percepción de Riesgo" },
         { id: 2, name: "Fatiga y Somnolencia" },
@@ -10,12 +10,13 @@ export const EstacionesView = () => {
         { id: 4, name: "Cuidado de Manos y Pies" },
         { id: 5, name: "Aislamiento de Energía" },
         { id: 6, name: "Seguridad Vial" },
-        { id: 7, name: "Tema por Definir" },
-        { id: 8, name: "Tema por Definir" },
-        { id: 9, name: "Tema por Definir" },
-        { id: 10, name: "Tema por Definir" },
-        { id: 11, name: "Tema por Definir" },
-        { id: 12, name: "Tema por Definir" }
+        { id: 7, name: "Controles de Ingeniería y Autonomía" },
+        { id: 8, name: "Gestión de Riesgos y Controles Críticos" },
+        { id: 9, name: "Medidas de Seguridad en Trabajos en Altura" },
+        { id: 10, name: "Exposición a Equipos en Movimiento" },
+        { id: 11, name: "Izaje Seguro" },
+        { id: 12, name: "Uso Correcto de Herramientas" },
+        { id: 13, name: "IPERC" } // Nueva estación 13 agregada
     ];
 
     // SVG de Estrella optimizado
@@ -73,7 +74,6 @@ export const EstacionesView = () => {
     const afterRender = () => {
         const grid = document.getElementById('gridEstaciones');
         
-        // Delegación de eventos para mayor rendimiento (un solo listener para los 12 botones)
         grid.addEventListener('click', (e) => {
             const card = e.target.closest('.station-card');
             if (card) {
@@ -82,7 +82,6 @@ export const EstacionesView = () => {
                 // Efecto de click "Game Juice"
                 card.style.transform = 'scale(0.95)';
                 setTimeout(() => {
-                    // Guardamos la estación seleccionada en el estado y navegamos
                     store.currentStation = stationId;
                     navigate('/juego');
                 }, 150);

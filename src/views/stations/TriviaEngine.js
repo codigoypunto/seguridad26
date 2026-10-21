@@ -120,7 +120,7 @@ export const TriviaEngine = (data) => {
                 if (currentQ.reflection) {
                     reflectionContainer.innerHTML = `
                         <div class="reflection-box pop-in">
-                            <div class="reflection-title">💡 REFLEXIÓN BR@VA</div>
+                            <div class="reflection-title">💡 REFLEXIÓN BRAV@</div>
                             <p class="reflection-text">${currentQ.reflection}</p>
                         </div>
                     `;
