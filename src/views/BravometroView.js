@@ -32,7 +32,7 @@ export const BravometroView = () => {
             ]
         },
         {
-            maxScore: 48,
+            maxScore: 52,
             name: "MAESTRO",
             color: "var(--color-success)",
             description: "Eres Brav@ de la Seguridad, líder y referente.",
@@ -59,8 +59,8 @@ export const BravometroView = () => {
         if (puntaje > 15 && puntaje <= 31) currentLevel = levelData[1];
         if (puntaje > 31) currentLevel = levelData[2];
 
-        // Calcular Porcentaje (Máx 48 puntos)
-        const targetPercentage = Math.min(Math.round((puntaje / 48) * 100), 100);
+        // Calcular Porcentaje (Máx 52 puntos)
+        const targetPercentage = Math.min(Math.round((puntaje / 52) * 100), 100);
 
         container.innerHTML = `
             <div class="brand-header">
@@ -141,8 +141,8 @@ export const BravometroView = () => {
         const percText = document.getElementById('percText');
         const btnContinue = document.getElementById('btnContinue');
 
-        // Si el usuario completó los 48 puntos, transformamos el botón en "RECLAMAR PREMIO"
-        if (puntaje >= 48) {
+        // Si el usuario completó los 52 puntos, transformamos el botón en "RECLAMAR PREMIO"
+        if (puntaje >= 52) {
             btnContinue.innerText = "RECLAMAR PREMIO";
             btnContinue.classList.add('btn-gold-glow');
         }
@@ -177,7 +177,7 @@ export const BravometroView = () => {
 
         // Lógica de navegación del botón
         btnContinue.addEventListener('click', () => {
-            if (puntaje >= 48) {
+            if (puntaje >= 52) {
                 navigate('/felicidades');
             } else {
                 navigate('/estaciones');

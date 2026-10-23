@@ -48,16 +48,25 @@ export const loginUser = (dni, empresa, lugar) => {
             lugar: lugar,
             estacion1: 0, estacion2: 0, estacion3: 0, estacion4: 0,
             estacion5: 0, estacion6: 0, estacion7: 0, estacion8: 0,
-            estacion9: 0, estacion10: 0, estacion11: 0, estacion12: 0,
+            estacion9: 0, estacion10: 0, estacion11: 0, estacion12: 0, 
+            estacion13: 0,
             puntaje: 0,
             completado: false
         };
         saveLocalDB(db);
     }
 
+    const user = db[dni];
+    for (let i = 1; i <= 13; i++) {
+        const key = `estacion${i}`;
+        const score = Number(user[key]);
+        user[key] = Number.isFinite(score) ? score : 0;
+    }
+    saveLocalDB(db);
+
     // Actualizamos el estado reactivo con el usuario actual
     store.currentUserDni = dni;
-    store.userData = db[dni];
+    store.userData = user;
 
     return isNewUser; // Retornamos si es nuevo para saber si enviar a Google Forms
 };
@@ -74,13 +83,15 @@ export const updateProgress = (estacion, estrellas) => {
     // Recalcular puntaje total
     let totalPuntaje = 0;
     let completadas = 0;
-    for (let i = 1; i <= 12; i++) {
-        totalPuntaje += user[`estacion${i}`];
-        if (user[`estacion${i}`] > 0) completadas++;
+    for (let i = 1; i <= 13; i++) {
+        const score = Number(user[`estacion${i}`] ?? 0);
+        const stationScore = Number.isFinite(score) ? score : 0;
+        totalPuntaje += stationScore;
+        if (stationScore > 0) completadas++;
     }
     
     user.puntaje = totalPuntaje;
-    if (completadas === 12) user.completado = true;
+    user.completado = completadas === 13;
 
     // Guardar y notificar
     saveLocalDB(db);

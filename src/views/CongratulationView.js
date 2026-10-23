@@ -20,7 +20,7 @@ export const CongratulationView = () => {
                 <h1 class="title-bravometro" style="color: var(--color-primary); margin-bottom: 10px;">¡FELICIDADES!</h1>
                 <p class="subtitle-bravometro" style="font-size: 16px;">Eres un verdadero Maestro de la Seguridad.</p>
                 <p style="text-align: center; font-size: 13px; margin-bottom: 20px; color: var(--color-text-muted);">
-                    Has conseguido los 48 puntos. Ingresa tu alias para generar tu insignia oficial.
+                    Ingresa tu alias para generar tu insignia oficial.
                 </p>
                 
                 <form id="aliasForm" class="form-container">
