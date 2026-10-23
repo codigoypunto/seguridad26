@@ -19,16 +19,14 @@ export const CongratulationView = () => {
                 <div class="trophy-icon">🏆</div>
                 <h1 class="title-bravometro" style="color: var(--color-primary); margin-bottom: 10px;">¡FELICIDADES!</h1>
                 <p class="subtitle-bravometro" style="font-size: 16px;">Eres un verdadero Maestro de la Seguridad.</p>
-                <p style="text-align: center; font-size: 13px; margin-bottom: 20px; color: var(--color-text-muted);">
-                    Ingresa tu alias para generar tu insignia oficial.
-                </p>
+                
                 
                 <form id="aliasForm" class="form-container">
                     <input 
                         type="text" 
                         id="userAlias" 
                         class="input-field" 
-                        placeholder="TU NOMBRE/ALIAS (MÁX 15)" 
+                        placeholder="NOMBRE/ALIAS" 
                         maxlength="15" 
                         required 
                         autocomplete="off"
