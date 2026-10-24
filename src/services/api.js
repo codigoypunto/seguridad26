@@ -64,7 +64,7 @@ export const sendToGoogleForms = (dni, company, lugar) => {
     const devSettings = JSON.parse(localStorage.getItem('dev_settings')) || { syncEnabled: true };
     if (!devSettings.syncEnabled) return;
 
-    const googleFormUrl = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScOEQGcKyg6R1vZQs1BFm3Rt4bi1GNG-dfWdu1PdmjEs_ZqxQ/formResponse";
+    const googleFormUrl = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSd06phog5gwOmX5eTk3cDdbT6iNfaqZF6eDmoyE1JagAUiD0g/formResponse";
     const formData = new FormData();
     formData.append("entry.897312612", dni);
     formData.append("entry.675767381", company);
