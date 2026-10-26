@@ -26,60 +26,204 @@ const CONFIG = {
 const TRIVIA_DATA = [
     {
         id: 1, 
-        img: "src/images/est6/s-pare.jpg", 
-        question: "¿Qué tipo de señal es y qué obligación indica?",
+        img: "src/images/est6/i61.jpg", 
+        question: "¿Qué indica esta señal?",
         options: [
-            { text: "Informativa - Parada de descanso", isCorrect: false },
-            { text: "Reguladora - Obligación de detenerse completamente", isCorrect: true },
-            { text: "Preventiva - Posible peligro adelante", isCorrect: false }
+            { text: "Zona de Empaques", isCorrect: false },
+            { text: "Estacionamiento para vehiculos livianos", isCorrect: true },
+            { text: "Estacionamiento para vehiculos pesados", isCorrect: false }
         ]
     },
     {
         id: 2, 
-        img: "src/images/est6/s-rocas.jpg",
-        question: "¿A qué categoría pertenece esta señal amarilla?",
+        img: "src/images/est6/i62.jpg", 
+        question: "¿Qué información brinda esta señal azul?",
         options: [
-            { text: "Preventiva - Advierte peligro de caída de rocas", isCorrect: true },
-            { text: "Reguladora - Prohíbe el paso de rocas", isCorrect: false },
-            { text: "Informativa - Zona de cantera", isCorrect: false }
+            { text: "Estacionar en retroceso, vehiculos pesados", isCorrect: true },
+            { text: "Estacionar en retroceso, vehiculos livianos", isCorrect: false },
+            { text: "No estacionar en retroceso", isCorrect: false }
         ]
     },
     {
         id: 3, 
-        img: "src/images/est6/s-retroceso.jpg",
-        question: "¿Qué información brinda esta señal azul con un camión?",
+        img: "src/images/est6/i63.jpg", 
+        question: "¿Qué información brinda esta señal azul?",
         options: [
-            { text: "Zona de lavado de equipos pesados", isCorrect: false },
-            { text: "Obligación de estacionar en retroceso", isCorrect: true },
-            { text: "Prohibido estacionar en esta área", isCorrect: false }
+            { text: "Descanzo para conductores", isCorrect: false },
+            { text: "Zona de trabajo", isCorrect: false },
+            { text: "Zona de equipo Pesado", isCorrect: true }
         ]
     },
-    {
+     {
         id: 4, 
-        img: "src/images/est6/s-cinturon.jpg",
-        question: "¿Qué nos indica esta señal azul?",
+        img: "src/images/est6/i64.jpg", 
+        question: "¿Qué información brinda esta señal azul?",
         options: [
-            { text: "Recomendación de usar cinturón", isCorrect: false },
-            { text: "Reguladora - Uso obligatorio del cinturón de seguridad", isCorrect: true },
-            { text: "Precaución: Asientos defectuosos", isCorrect: false }
+            { text: "Desvio por obras", isCorrect: false },
+            { text: "Mirar a la derecha", isCorrect: false },
+            { text: "Sentido obligatorio de circulacion", isCorrect: true }
         ]
     },
     {
         id: 5, 
-        img: "src/images/est6/s-distancia.jpg",
-        question: "¿Cuál es la distancia mínima segura que indica esta señal para equipo pesado?",
+        img: "src/images/est6/i65.jpg", 
+        question: "¿Qué información brinda esta señal azul?",
         options: [
-            { text: "20 metros", isCorrect: false },
-            { text: "50 metros", isCorrect: true },
-            { text: "100 metros", isCorrect: false }
+            { text: "Sentido de dirección obligatoria", isCorrect: true },
+            { text: "Doble vía", isCorrect: false },
+            { text: "Curva peligrosa", isCorrect: false }
         ]
     },
-
-/* 
-    { id: 6, img: "src/images/est6/s-tu-imagen6.jpg", question: "[PREGUNTA 6]", options: [{ text: "X", isCorrect: true }, { text: "Y", isCorrect: false }, { text: "Z", isCorrect: false }] },
-    { id: 7, img: "src/images/est6/s-tu-imagen7.jpg", question: "[PREGUNTA 7]", options: [{ text: "X", isCorrect: true }, { text: "Y", isCorrect: false }, { text: "Z", isCorrect: false }] },
- */
-
+    {
+        id: 6, 
+        img: "src/images/est6/i66.jpg", 
+        question: "¿Qué tipo de señal es?",
+        options: [
+            { text: "Señal de prevención", isCorrect: false },
+            { text: "Señal de regulación", isCorrect: false },
+            { text: "Señal de información", isCorrect: true }
+        ]
+    },
+    {
+        id: 7, 
+        img: "src/images/est6/i67.jpg", 
+        question: "¿Qué tipo de señal es?",
+        options: [
+            { text: "Señal de prevención", isCorrect: false },
+            { text: "Señal de regulación", isCorrect: false },
+            { text: "Señal de información", isCorrect: true }
+        ]
+    },
+    {
+        id: 8, 
+        img: "src/images/est6/i68.jpg", 
+        question: "¿Qué indica esta señal?",
+        options: [
+            { text: "Mantener grupo de 4 personas", isCorrect: false },
+            { text: "Punto de encuentro", isCorrect: true },
+            { text: "Zona de fiestas", isCorrect: false }
+        ]
+    },
+    {
+        id: 9, 
+        img: "src/images/est6/o61.jpg", 
+        question: "¿Qué indica esta señal?",
+        options: [
+            { text: "Zona restringida, solo personal autorizado", isCorrect: true },
+            { text: "Prohibido esta de pie", isCorrect: false },
+            { text: "Peligro, no pasar", isCorrect: false }
+        ]
+    },
+    {
+        id: 10, 
+        img: "src/images/est6/o62.jpg", 
+        question: "¿Qué indica esta señal?",
+        options: [
+            { text: "Cuidado al subir y bajar", isCorrect: false },
+            { text: "Acensores", isCorrect: false },
+            { text: "Doble sentido de circulación", isCorrect: true }
+        ]
+    },
+    {
+        id: 11, 
+        img: "src/images/est6/o63.jpg", 
+        question: "¿Qué indica esta señal?",
+        options: [
+            { text: "Paso de peatones", isCorrect: false },
+            { text: "Cruce de bicicletas", isCorrect: false },
+            { text: "Resalto, reductor de velocidad", isCorrect: true }
+        ]
+    },
+    {
+        id: 12, 
+        img: "src/images/est6/o64.jpg", 
+        question: "¿Qué indica esta señal?",
+        options: [
+            { text: "Intersección en T", isCorrect: true },
+            { text: "Área de transporte", isCorrect: false },
+            { text: "Zona de trasbordo", isCorrect: false }
+        ]
+    },
+    {
+        id: 13, 
+        img: "src/images/est6/o65.jpg", 
+        question: "¿Qué indica esta señal?",
+        options: [
+            { text: "Zona de descanso", isCorrect: false },
+            { text: "Estrechamiento de vía", isCorrect: true },
+            { text: "Punto de interés", isCorrect: false }
+        ]
+    },
+    {
+        id: 14, 
+        img: "src/images/est6/o66.jpg", 
+        question: "¿Qué indica esta señal?",
+        options: [
+            { text: "Zona de descanso", isCorrect: false },
+            { text: "Área de servicio", isCorrect: false },
+            { text: "Incorporación de vía", isCorrect: true }
+        ]
+    },
+    {
+        id: 15, 
+        img: "src/images/est6/o67.jpg", 
+        question: "¿Qué indica esta señal?",
+        options: [
+            { text: "Recuerda mantenerte lejos de la zona indicada", isCorrect: false },
+        ]
+    },
+    {
+        id: 16, 
+        img: "src/images/est6/p61.jpg", 
+        question: "¿Qué indica esta señal?",
+        options: [
+            { text: "Estacionamiento", isCorrect: false },
+            { text: "Prioridad equipo Pesado", isCorrect: true },
+            { text: "Zona de Carga", isCorrect: false }
+        ]
+    },
+   {
+        id: 17, 
+        img: "src/images/est6/p62.jpg", 
+        question: "¿Qué indica esta señal?",
+        options: [
+            { text: "Mantener Distancia segura, minimo 50 metros", isCorrect: true },
+            { text: "Área libre de estacionamiento", isCorrect: false },
+            { text: "Mantener Distancia segura, maximo 50 metros", isCorrect: false }
+        ]
+    },
+    {
+        id: 18, 
+        img: "src/images/est6/p63.jpg", 
+        question: "¿Qué indica esta señal?",
+        options: [
+            { text: "No usar celulares", isCorrect: false },
+            { text: "Comunicacion por radio", isCorrect: true },
+            { text: "Zona WiFi", isCorrect: false }
+        ]
+    },
+    {
+        id: 19, 
+        img: "src/images/est6/p64.jpg", 
+        question: "¿Qué tipo de señal es?",
+        options: [
+            { text: "Señal informativa", isCorrect: false },
+            { text: "Señal reguladora", isCorrect: false },
+            { text: "Señal preventiva", isCorrect: true }
+        ]
+    },
+    {
+        id: 20, 
+        img: "src/images/est6/p65.jpg", 
+        question: "¿Qué indica esta señal?",
+        options: [
+            { text: "Peligro, caida de rocas", isCorrect: true },
+            { text: "Zona de desmonte", isCorrect: false },
+            { text: "Acantilado", isCorrect: false }
+        ]
+    },
+    
+    
 ];
 
 // Camioneta SVG 
