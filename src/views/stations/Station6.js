@@ -388,10 +388,10 @@ export const Station6 = () => {
                 <div id="r21" class="safe-road-h" style="top: 6%; left: 25%; width: 67%;"></div>
                 
                 <!-- CHECKPOINTS -->
-                <div class="safe-road checkpoint" data-id="cp1" style="top: 65%; left: 78%; width: 11%; height: 7%;"><span><img src="src/images/est6/s-pare.jpg" alt="PARE" style="width: 100%; height: 100%; object-fit: contain;"></span></div>
-                <div class="safe-road checkpoint" data-id="cp2" style="top: 63%; left: 23%; width: 11%; height: 7%;"><span><img src="src/images/est6/s-pare.jpg" alt="PARE" style="width: 100%; height: 100%; object-fit: contain;"></span></div>
-                <div class="safe-road checkpoint" data-id="cp3" style="top: 18.5%; left: 30%; width: 11%; height: 7%;"><span><img src="src/images/est6/s-pare.jpg" alt="PARE" style="width: 100%; height: 100%; object-fit: contain;"></span></div>
-                <div class="safe-road checkpoint" data-id="cp4" style="top: 41.5%; left: 72%; width: 11%; height: 7%;"><span><img src="src/images/est6/s-pare.jpg" alt="PARE" style="width: 100%; height: 100%; object-fit: contain;"></span></div>
+                <div class="safe-road checkpoint" data-id="cp1" style="top: 65%; left: 78%; width: 11%; height: 7%;"><span><img src="src/images/est6/r61.jpg" alt="PARE" style="width: 100%; height: 100%; object-fit: contain;"></span></div>
+                <div class="safe-road checkpoint" data-id="cp2" style="top: 63%; left: 23%; width: 11%; height: 7%;"><span><img src="src/images/est6/r61.jpg" alt="PARE" style="width: 100%; height: 100%; object-fit: contain;"></span></div>
+                <div class="safe-road checkpoint" data-id="cp3" style="top: 18.5%; left: 30%; width: 11%; height: 7%;"><span><img src="src/images/est6/r61.jpg" alt="PARE" style="width: 100%; height: 100%; object-fit: contain;"></span></div>
+                <div class="safe-road checkpoint" data-id="cp4" style="top: 41.5%; left: 72%; width: 11%; height: 7%;"><span><img src="src/images/est6/r61.jpg" alt="PARE" style="width: 100%; height: 100%; object-fit: contain;"></span></div>
                 
                 <!-- META -->
                 <div class="safe-road road-finish" style="top: 2%; left: 10%; width: 20%; height: 10%;">META</div>
